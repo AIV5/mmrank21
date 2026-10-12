@@ -1,5 +1,9 @@
-import MMRank.CoefficientMaps
-import MMRank.LengthReduction
+module
+
+public import MMRank.CoefficientMaps
+public import MMRank.LengthReduction
+
+@[expose] public section
 
 /-! # Транспонирующая симметрия точного алгоритма -/
 

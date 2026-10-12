@@ -1,5 +1,9 @@
-import MMRank.InvariantPointDecomposition
-import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
+module
+
+public import MMRank.InvariantPointDecomposition
+public import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
+
+@[expose] public section
 
 /-! # Инвариантное координатное пространство порождено точечными словами -/
 namespace MMRank

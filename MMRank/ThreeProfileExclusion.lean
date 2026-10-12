@@ -1,6 +1,10 @@
-import MMRank.SecondConductorProductRank
-import MMRank.PhysicalAtomDiagonal
-import MMRank.ZeroGrowthPhysicalAtoms
+module
+
+public import MMRank.SecondConductorProductRank
+public import MMRank.PhysicalAtomDiagonal
+public import MMRank.ZeroGrowthPhysicalAtoms
+
+@[expose] public section
 
 /-! # Профиль (3,3) исключён одной оценкой 18+3
 

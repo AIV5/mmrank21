@@ -1,5 +1,9 @@
-import MMRank.RectangularTestChart
-import MMRank.ScalarProductLowerBound
+module
+
+public import MMRank.RectangularTestChart
+public import MMRank.ScalarProductLowerBound
+
+@[expose] public section
 
 namespace MMRank.ExactAlgorithm
 open Matrix Module

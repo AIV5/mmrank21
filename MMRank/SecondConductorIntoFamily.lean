@@ -1,5 +1,9 @@
-import MMRank.ConductorSeparableFactor
-import MMRank.DiagonalCoefficientLaw
+module
+
+public import MMRank.ConductorSeparableFactor
+public import MMRank.DiagonalCoefficientLaw
+
+@[expose] public section
 
 /-! # Второй кондуктор со значениями в самой гиперплоскости -/
 namespace MMRank.ExactAlgorithm

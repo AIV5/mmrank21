@@ -1,8 +1,12 @@
-import Mathlib.GroupTheory.CosetCover
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import MMRank.RankFactorization
-import MMRank.Algorithm
-import MMRank.TraceDuality
+module
+
+public import Mathlib.GroupTheory.CosetCover
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import MMRank.RankFactorization
+public import MMRank.Algorithm
+public import MMRank.TraceDuality
+
+@[expose] public section
 
 /-!
 # Полная лемма выбора F для точного алгоритма

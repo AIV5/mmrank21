@@ -1,7 +1,11 @@
-import MMRank.CoordinateComponents
-import Mathlib.LinearAlgebra.TensorProduct.Submodule
-import Mathlib.RingTheory.TensorProduct.Finite
-import Mathlib.LinearAlgebra.Contraction
+module
+
+public import MMRank.CoordinateComponents
+public import Mathlib.LinearAlgebra.TensorProduct.Submodule
+public import Mathlib.RingTheory.TensorProduct.Finite
+public import Mathlib.LinearAlgebra.Contraction
+
+@[expose] public section
 
 /-!
 # Двойственное вложение произведения и координатные простые тензоры

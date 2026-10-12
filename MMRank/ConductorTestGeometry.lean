@@ -1,6 +1,10 @@
-import MMRank.ProjectedTestPairs
-import MMRank.CollinearSimplePairs
-import MMRank.StationaryConductorPlane
+module
+
+public import MMRank.ProjectedTestPairs
+public import MMRank.CollinearSimplePairs
+public import MMRank.StationaryConductorPlane
+
+@[expose] public section
 
 namespace MMRank.ExactAlgorithm
 open Matrix Module

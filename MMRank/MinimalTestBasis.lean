@@ -1,6 +1,10 @@
-import MMRank.SupportedTestSpan
-import MMRank.RankFactorization
-import Mathlib.LinearAlgebra.Dimension.OrzechProperty
+module
+
+public import MMRank.SupportedTestSpan
+public import MMRank.RankFactorization
+public import Mathlib.LinearAlgebra.Dimension.OrzechProperty
+
+@[expose] public section
 
 /-! # Базис и двойственные следовые формы на минимальном носителе -/
 

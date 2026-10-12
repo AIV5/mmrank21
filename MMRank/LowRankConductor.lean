@@ -1,6 +1,10 @@
-import MMRank.SecondConductor
-import MMRank.RankFactorization
-import MMRank.CommonLineRigidity
+module
+
+public import MMRank.SecondConductor
+public import MMRank.RankFactorization
+public import MMRank.CommonLineRigidity
+
+@[expose] public section
 
 /-! # Исключение промежуточного ранга первого кондуктора
 

@@ -1,6 +1,10 @@
-import MMRank.MatrixSubspaceGeneric
-import MMRank.FixedColumnSpace
-import MMRank.TraceDuality
+module
+
+public import MMRank.MatrixSubspaceGeneric
+public import MMRank.FixedColumnSpace
+public import MMRank.TraceDuality
+
+@[expose] public section
 
 namespace MMRank
 open Matrix Module MvPolynomial

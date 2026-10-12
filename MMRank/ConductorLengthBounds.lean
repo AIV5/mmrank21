@@ -1,7 +1,11 @@
-import MMRank.PhysicalConductorBounds
-import MMRank.RestrictedConductorBounds
-import MMRank.NormalizedHyperplane
-import MMRank.InfiniteExtension
+module
+
+public import MMRank.PhysicalConductorBounds
+public import MMRank.RestrictedConductorBounds
+public import MMRank.NormalizedHyperplane
+public import MMRank.InfiniteExtension
+
+@[expose] public section
 
 /-! # Первые безусловные оценки длины из двух сторон кондукторного метода
 

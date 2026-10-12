@@ -1,8 +1,12 @@
-import Mathlib.LinearAlgebra.Finsupp.LinearCombination
-import Mathlib.LinearAlgebra.BilinearMap
-import Mathlib.Algebra.Module.BigOperators
-import MMRank.CoefficientMaps
-import MMRank.TraceDuality
+module
+
+public import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+public import Mathlib.LinearAlgebra.BilinearMap
+public import Mathlib.Algebra.Module.BigOperators
+public import MMRank.CoefficientMaps
+public import MMRank.TraceDuality
+
+@[expose] public section
 
 namespace MMRank
 open Matrix Module

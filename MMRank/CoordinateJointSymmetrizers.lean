@@ -1,6 +1,10 @@
-import MMRank.JointSymmetrizers
-import MMRank.RestrictedInputs
-import Mathlib.LinearAlgebra.Basis.Bilinear
+module
+
+public import MMRank.JointSymmetrizers
+public import MMRank.RestrictedInputs
+public import Mathlib.LinearAlgebra.Basis.Bilinear
+
+@[expose] public section
 
 /-! # Координатные блоки совместного симметризатора
 

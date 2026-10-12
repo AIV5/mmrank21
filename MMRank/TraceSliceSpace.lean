@@ -1,5 +1,9 @@
-import MMRank.ResidualCoefficientCode
-import MMRank.RankOneIdentityBasis
+module
+
+public import MMRank.ResidualCoefficientCode
+public import MMRank.RankOneIdentityBasis
+
+@[expose] public section
 
 /-! # Оболочка среза как единица плюс образ строк ядра
 Прямое дополнение без секции F.

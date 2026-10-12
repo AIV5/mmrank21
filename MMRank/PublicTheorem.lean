@@ -1,4 +1,8 @@
-import MMRank.LengthTwentyOne
+module
+
+public import MMRank.LengthTwentyOne
+
+@[expose] public section
 
 /-!
 # A lower bound of 21 for 3 × 3 matrix multiplication over every field

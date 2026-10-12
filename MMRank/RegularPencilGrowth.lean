@@ -1,8 +1,12 @@
-import MMRank.PlaneCoefficientChart
-import MMRank.RegularSliceChoice
-import MMRank.TwoDimensionalResolventGeometry
-import MMRank.ResolventPairDescent
-import MMRank.GrowingComponentImage
+module
+
+public import MMRank.PlaneCoefficientChart
+public import MMRank.RegularSliceChoice
+public import MMRank.TwoDimensionalResolventGeometry
+public import MMRank.ResolventPairDescent
+public import MMRank.GrowingComponentImage
+
+@[expose] public section
 
 /-! # Запрет регулярной компоненты одним операторным отношением
 

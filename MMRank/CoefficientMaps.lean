@@ -1,5 +1,9 @@
-import MMRank.Algorithm
-import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+module
+
+public import MMRank.Algorithm
+public import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+
+@[expose] public section
 
 /-!
 # Коэффициентные отображения α, β, γ

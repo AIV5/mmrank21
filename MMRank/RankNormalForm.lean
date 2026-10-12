@@ -1,4 +1,8 @@
-import MMRank.JointSymmetrizerPairCapacity
+module
+
+public import MMRank.JointSymmetrizerPairCapacity
+
+@[expose] public section
 
 /-! # Ранговая нормальная форма с явными единицами кольца матриц
 

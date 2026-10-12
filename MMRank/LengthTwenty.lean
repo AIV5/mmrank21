@@ -1,5 +1,9 @@
-import MMRank.CriticalConductorDimensionsDirect
-import MMRank.AlgebraicClosureReduction
+module
+
+public import MMRank.CriticalConductorDimensionsDirect
+public import MMRank.AlgebraicClosureReduction
+
+@[expose] public section
 
 /-! # Безусловная нижняя граница двадцать над произвольным полем -/
 

@@ -1,6 +1,10 @@
-import MMRank.ConductorJointSymmetry
-import MMRank.ProportionalBlockFactor
-import MMRank.JointSymmetrizerCodomain
+module
+
+public import MMRank.ConductorJointSymmetry
+public import MMRank.ProportionalBlockFactor
+public import MMRank.JointSymmetrizerCodomain
+
+@[expose] public section
 
 /-! # Разделённые факторы второго физического кондуктора
 

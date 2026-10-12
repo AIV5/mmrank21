@@ -1,7 +1,11 @@
-import MMRank.PlaneCapacity
-import MMRank.SimpleHyperplaneNormalization
-import Mathlib.Data.Set.Card.Arithmetic
-import Mathlib.LinearAlgebra.Dimension.OrzechProperty
+module
+
+public import MMRank.PlaneCapacity
+public import MMRank.SimpleHyperplaneNormalization
+public import Mathlib.Data.Set.Card.Arithmetic
+public import Mathlib.LinearAlgebra.Dimension.OrzechProperty
+
+@[expose] public section
 
 namespace MMRank.ExactAlgorithm
 open Matrix Module

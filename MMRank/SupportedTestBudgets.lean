@@ -1,5 +1,9 @@
-import MMRank.SupportedTestSpace
-import MMRank.RestrictedRankBudget
+module
+
+public import MMRank.SupportedTestSpace
+public import MMRank.RestrictedRankBudget
+
+@[expose] public section
 
 namespace MMRank.ExactAlgorithm
 open Matrix Module

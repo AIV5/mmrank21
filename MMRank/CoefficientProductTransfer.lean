@@ -1,4 +1,8 @@
-import MMRank.CoefficientMaps
+module
+
+public import MMRank.CoefficientMaps
+
+@[expose] public section
 
 /-! # Перенос равенств координатных произведений в физические матрицы
 

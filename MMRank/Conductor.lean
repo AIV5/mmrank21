@@ -1,5 +1,9 @@
-import Mathlib.Algebra.Algebra.Operations
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+module
+
+public import Mathlib.Algebra.Algebra.Operations
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+
+@[expose] public section
 
 /-!
 # Кондуктор и насыщенная пара

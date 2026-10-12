@@ -1,4 +1,8 @@
-import MMRank.TestSliceRank
+module
+
+public import MMRank.TestSliceRank
+
+@[expose] public section
 
 /-! # Бюджет простых пар после факторизации по совместному образу тестов -/
 

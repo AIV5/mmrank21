@@ -1,4 +1,8 @@
-import MMRank.PairSliceFlattening
+module
+
+public import MMRank.PairSliceFlattening
+
+@[expose] public section
 
 /-! # Трёхсрезовая линейная развёртка над произвольным полем -/
 

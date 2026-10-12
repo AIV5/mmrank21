@@ -1,7 +1,11 @@
-import MMRank.SupportedTestMass
-import MMRank.RectangularCompression
-import MMRank.AnnihilatorCapacity
-import MMRank.ConductorOrthogonality
+module
+
+public import MMRank.SupportedTestMass
+public import MMRank.RectangularCompression
+public import MMRank.AnnihilatorCapacity
+public import MMRank.ConductorOrthogonality
+
+@[expose] public section
 
 namespace MMRank
 open Matrix Module

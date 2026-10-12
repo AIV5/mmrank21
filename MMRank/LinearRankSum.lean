@@ -1,6 +1,10 @@
-import MMRank.RankFactorization
-import Mathlib.LinearAlgebra.Dimension.Constructions
-import Mathlib.Data.Set.Card
+module
+
+public import MMRank.RankFactorization
+public import Mathlib.LinearAlgebra.Dimension.Constructions
+public import Mathlib.Data.Set.Card
+
+@[expose] public section
 
 /-! # Ранг конечной суммы линейных отображений и матриц -/
 

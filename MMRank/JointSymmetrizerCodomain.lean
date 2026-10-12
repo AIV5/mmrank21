@@ -1,4 +1,8 @@
-import MMRank.JointSymmetrizers
+module
+
+public import MMRank.JointSymmetrizers
+
+@[expose] public section
 
 /-! # Ограничение выхода семейства и выбор его координат
 

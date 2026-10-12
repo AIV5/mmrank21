@@ -1,5 +1,9 @@
-import MMRank.LengthReduction
-import Mathlib.LinearAlgebra.Matrix.Bilinear
+module
+
+public import MMRank.LengthReduction
+public import Mathlib.LinearAlgebra.Matrix.Bilinear
+
+@[expose] public section
 
 /-!
 # Перенос данного алгоритма по гомоморфизму коэффициентов

@@ -1,4 +1,8 @@
-import MMRank.SupportedTestSpace
+module
+
+public import MMRank.SupportedTestSpace
+
+@[expose] public section
 
 namespace MMRank
 open Matrix Module

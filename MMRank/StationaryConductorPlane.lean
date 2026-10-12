@@ -1,7 +1,11 @@
-import MMRank.MatrixColumnCore
-import MMRank.ReciprocalColumnSpace
-import MMRank.ConductorWordRank
-import MMRank.PointWordPhysical
+module
+
+public import MMRank.MatrixColumnCore
+public import MMRank.ReciprocalColumnSpace
+public import MMRank.ConductorWordRank
+public import MMRank.PointWordPhysical
+
+@[expose] public section
 
 namespace MMRank
 open Matrix Module

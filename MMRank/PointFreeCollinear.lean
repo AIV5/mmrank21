@@ -1,5 +1,9 @@
-import MMRank.GenericSupportedTest
-import MMRank.PointClassBudget
+module
+
+public import MMRank.GenericSupportedTest
+public import MMRank.PointClassBudget
+
+@[expose] public section
 
 /-! # Коллинеарные группы без точечных тестов -/
 

@@ -1,0 +1,139 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: v0.4
+project:
+  name: A lower bound of 21 for 3 × 3 matrix multiplication over every field
+  description: >-
+    Every exact bilinear algorithm for multiplying two 3 × 3 matrices over
+    an arbitrary field uses at least 21 products of input linear forms.
+    The theorem includes finite and infinite fields in every characteristic.
+    The input linear forms and output matrices are unrestricted. This is a
+    lower bound for exact bilinear complexity, not for border rank or general
+    arithmetic circuits. The repository contains the proof development and
+    an interface stated entirely with ordinary Mathlib matrices and linear maps.
+  authors: [Andrey Ivanov]
+  responsible_maintainers: [Andrey Ivanov]
+  license: Apache-2.0
+classification:
+  arxiv: [cs.CC, math.RA]
+  msc2020: [68Q17, 15A69, 03B35]
+sources:
+  - title: A lower bound of 21 for 3 × 3 matrix multiplication over every field
+    authors: [Andrey Ivanov]
+    id: https://doi.org/10.5281/zenodo.23324839
+    type: original-proof
+    relationship: other
+    note: >-
+      The result was first presented by this formalization. The DOI identifies
+      its earlier release 0.1.1; this repository continues the same substantive
+      proof development with a module-system migration and a Comparator interface.
+      No claim of exhaustive priority verification is made.
+  - title: A noncommutative algorithm for multiplying 3 × 3 matrices using 23 multiplications
+    authors: [Julian D. Laderman]
+    id: https://doi.org/10.1090/S0002-9904-1976-13988-2
+    type: paper
+    relationship: background
+    note: Upper bound of 23; not an assumption or input to this proof.
+  - title: On the complexity of the multiplication of matrices of small formats
+    authors: [Markus Bläser]
+    id: https://doi.org/10.1016/S0885-064X(02)00007-9
+    type: paper
+    relationship: background
+    note: Classical lower bound of 19; not an assumed lemma in this formalization.
+  - title: Automated Lower Bounds for Bilinear Complexity over Finite Fields
+    authors: [Chengu Wang]
+    id: https://arxiv.org/abs/2603.07280
+    type: paper
+    relationship: background
+  - title: A Lower Bound of 21 for 3 × 3 Matrix Multiplication over F₂
+    authors: [Chengu Wang]
+    id: https://arxiv.org/abs/2609.06725
+    type: paper
+    relationship: background
+  - title: A Structural Proof of the Lower Bound 21 for 3 × 3 Matrix Multiplication over F₂
+    id: https://arxiv.org/abs/2609.18722
+    type: paper
+    relationship: background
+    note: Field-specific result and formalization; no code or certificates are imported.
+  - title: Lower Bound of 22 for 3x3 Matrix Multiplication over the Integers
+    authors: [Isaac Rudich, Louis-Martin Rousseau]
+    id: https://arxiv.org/abs/2610.01639
+    type: paper
+    relationship: background
+    note: Bounds over F₂ and for integer-coefficient algorithms; not a bound of 22 over every field.
+  - title: The rank of 3 × 3 matrix multiplication over F₂ is 23
+    authors: [Tejasvi Singh Tomar]
+    id: https://arxiv.org/abs/2610.11823v1
+    type: paper
+    relationship: background
+    note: Exact rank over F₂; not an exact-rank claim over every field.
+related_formalizations:
+  - id: https://arxiv.org/abs/2609.18722
+    relationship: independent
+    note: Describes a Lean formalization over F₂. No proof code is reused here.
+  - id: https://arxiv.org/abs/2610.01639
+    relationship: independent
+    note: Describes a Lean formalization of field-specific and integer-coefficient bounds.
+  - id: https://arxiv.org/abs/2610.11823v1
+    relationship: independent
+    note: Describes Lean certificate checking over F₂, including compiled evaluation for large checks.
+status:
+  scope: >-
+    The unrestricted exact bilinear lower bound 21 for 3 × 3 multiplication
+    over every field is fully proved. There is no claim of a lower bound of
+    22 over every field, no exact-rank determination over every field, and no
+    border-rank result. The row-vector action and coefficient cycle UVW are
+    retained internally; the public AB identity is proved equivalent to that
+    interface. Challenge.lean has one deliberate statement-only proof hole;
+    it is not imported by the proof library or Solution.lean.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: [propext, Classical.choice, Quot.sound]
+  main_results:
+    - declaration: MMRank.Palomar.lower_bound
+      file: Solution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: comparator.json
+      literature_dependencies: []
+automation:
+  methods:
+    - method: agent
+      models: [OpenAI models accessed through ChatGPT and Codex; exact historical model versions not recorded]
+      framework: ChatGPT and Codex
+      tool_setup: >-
+        Substantial AI assistance in mathematical exploration, Lean proof
+        implementation, refactoring, documentation, and repeated build and
+        axiom checks. The formal proof uses Lean and Mathlib tactics and does
+        not rely on native_decide or additional project axioms.
+      prompting_notes: >-
+        Human-directed research on exact matrix multiplication complexity,
+        followed by iterative formalization, simplification, and publication preparation.
+  notes: >-
+    Andrey Ivanov directed the research and is the responsible human author
+    and maintainer. AI-generated work was revised iteratively and checked
+    with Lean. A complete per-model history, prompt archive, and cost account
+    were not maintained; the absence of those records is not a claim of manual authorship.
+fidelity:
+  divergences: >-
+    The compared statement is the unrestricted AB formulation in the README.
+    It is a short wrapper around the public theorem proved from the internal
+    row-action formulation. The cited field-specific papers provide context;
+    this project does not purport to formalize their arguments.
+review:
+  status: self-assessed
+  notes: >-
+    The author and assisting agents checked the statement, dependencies, and
+    axiom audit during development. The released proof passed a build in a
+    clean checkout and GitHub CI. These are internal checks, not independent
+    human peer review. No Palomar registration or editorial review is claimed.
+alignment:
+  namespace: MMRank
+  statements:
+    - source: README.md, The theorem
+      lean: MMRank.Palomar.lower_bound
+      module: Solution
+      status: proved
+      note: Same quantifiers and hypotheses as MMRank.matrix_multiplication_length_ge_twenty_one.
+acknowledgements: >-
+  Lean and Mathlib provide the proof language, kernel, mathematical library,
+  and tactics. OpenAI ChatGPT/Codex provided substantial assistance as disclosed above.

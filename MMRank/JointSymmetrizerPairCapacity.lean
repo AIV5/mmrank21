@@ -1,9 +1,13 @@
-import MMRank.RankOneMatrixSpaces
-import MMRank.JointSymmetrizers
-import Mathlib.LinearAlgebra.CrossProduct
-import Mathlib.LinearAlgebra.Dual.Lemmas
-import Mathlib.LinearAlgebra.Matrix.Trace
-import Mathlib.LinearAlgebra.Matrix.Bilinear
+module
+
+public import MMRank.RankOneMatrixSpaces
+public import MMRank.JointSymmetrizers
+public import Mathlib.LinearAlgebra.CrossProduct
+public import Mathlib.LinearAlgebra.Dual.Lemmas
+public import Mathlib.LinearAlgebra.Matrix.Trace
+public import Mathlib.LinearAlgebra.Matrix.Bilinear
+
+@[expose] public section
 
 /-! # Вместимость совместных симметризаторов двух трёхмерных блоков
 

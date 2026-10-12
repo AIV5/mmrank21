@@ -1,6 +1,10 @@
-import MMRank.RestrictedSupport
-import MMRank.ConductorSeparableFactor
-import Mathlib.LinearAlgebra.Projection
+module
+
+public import MMRank.RestrictedSupport
+public import MMRank.ConductorSeparableFactor
+public import Mathlib.LinearAlgebra.Projection
+
+@[expose] public section
 
 /-! # Следовые координаты разделённого второго кондуктора -/
 

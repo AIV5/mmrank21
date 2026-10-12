@@ -1,7 +1,11 @@
-import MMRank.ExteriorPairRelations
-import MMRank.BilinearCompression
-import MMRank.QuotientMatrixChart
-import MMRank.TraceDuality
+module
+
+public import MMRank.ExteriorPairRelations
+public import MMRank.BilinearCompression
+public import MMRank.QuotientMatrixChart
+public import MMRank.TraceDuality
+
+@[expose] public section
 
 /-! # Реальная прямоугольная формула после сжатия внешних пар -/
 

@@ -1,7 +1,11 @@
-import MMRank.LocalReplacementRanks
-import MMRank.FirstRankGrowthExclusion
-import MMRank.ThreeProfileExclusion
-import MMRank.FourAtomResidualExclusion
+module
+
+public import MMRank.LocalReplacementRanks
+public import MMRank.FirstRankGrowthExclusion
+public import MMRank.ThreeProfileExclusion
+public import MMRank.FourAtomResidualExclusion
+
+@[expose] public section
 
 /-! # Общая21 с одним ранговым потенциалом
 

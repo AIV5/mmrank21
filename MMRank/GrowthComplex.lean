@@ -1,6 +1,10 @@
-import MMRank.ConductorGrowth
-import Mathlib.LinearAlgebra.ExteriorPower.Basic
-import Mathlib.Tactic.FinCases
+module
+
+public import MMRank.ConductorGrowth
+public import Mathlib.LinearAlgebra.ExteriorPower.Basic
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # Начало комплекса роста и точная размерность кондуктора
@@ -22,7 +26,8 @@ variable {R A : Type*} [CommRing R] [CommRing A] [Algebra R A]
 /-- Вторая ступень роста; при 1 ∈ M это M²N/MN. -/
 abbrev SecondGrowth (M N : Submodule R A) := FirstGrowth M (M * N)
 
-private def nextGrowthAction (M N : Submodule R A) :
+/-- Multiplication on the first growth quotient before quotienting the multiplier. -/
+def nextGrowthAction (M N : Submodule R A) :
     M →ₗ[R] FirstGrowth M N →ₗ[R] SecondGrowth M N where
   toFun m := (N.comap (M * N).subtype).liftQ (growthAction M (M * N) m) (by
     intro n hn

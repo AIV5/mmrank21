@@ -1,6 +1,10 @@
-import MMRank.SubspaceMatrixChart
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.LinearAlgebra.Matrix.Bilinear
+module
+
+public import MMRank.SubspaceMatrixChart
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.LinearAlgebra.Matrix.Bilinear
+
+@[expose] public section
 
 /-! # Регулярный тест в координатах двух совместных носителей
 

@@ -1,9 +1,13 @@
-import MMRank.ProjectiveFrameCoordinates
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Tactic.FieldSimp
-import MMRank.JointSymmetrizerPairCapacity
-import MMRank.ProportionalBlockFactor
-import Mathlib.LinearAlgebra.Matrix.Basis
+module
+
+public import MMRank.ProjectiveFrameCoordinates
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Tactic.FieldSimp
+public import MMRank.JointSymmetrizerPairCapacity
+public import MMRank.ProportionalBlockFactor
+public import Mathlib.LinearAlgebra.Matrix.Basis
+
+@[expose] public section
 
 /-! # Матричная реализация двух независимых базисов репера -/
 namespace MMRank

@@ -1,5 +1,9 @@
-import MMRank.PartialTwoByTwo
-import MMRank.TwoByTwoNormalForm
+module
+
+public import MMRank.PartialTwoByTwo
+public import MMRank.TwoByTwoNormalForm
+
+@[expose] public section
 
 /-! # Нижняя оценка для произвольных трёх независимых выходов произведения 2×n на n×2 -/
 

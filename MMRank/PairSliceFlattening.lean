@@ -1,5 +1,9 @@
-import MMRank.LinearRankSum
-import Mathlib.Tactic.FinCases
+module
+
+public import MMRank.LinearRankSum
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-! # Развёртка по парам срезов и ганкелев вход 2×3
 

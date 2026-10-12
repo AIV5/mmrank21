@@ -1,4 +1,8 @@
-import MMRank.SecondConductorProductRank
+module
+
+public import MMRank.SecondConductorProductRank
+
+@[expose] public section
 
 /-! # Бюджет длины из разделённого второго кондуктора
 

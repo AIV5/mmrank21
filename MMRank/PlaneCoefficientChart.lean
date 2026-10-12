@@ -1,5 +1,9 @@
-import MMRank.FullColumnTriple
-import MMRank.CrossTestRelations
+module
+
+public import MMRank.FullColumnTriple
+public import MMRank.CrossTestRelations
+
+@[expose] public section
 
 /-! # Малые классы первых коэффициентов
 

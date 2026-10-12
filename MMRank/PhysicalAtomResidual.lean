@@ -1,4 +1,8 @@
-import MMRank.PhysicalAtomQuotient
+module
+
+public import MMRank.PhysicalAtomQuotient
+
+@[expose] public section
 
 /-! # Остаточное тождество на полном аннуляторе атомных тестов
 

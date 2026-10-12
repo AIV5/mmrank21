@@ -1,4 +1,8 @@
-import MMRank.CrossTestRelations
+module
+
+public import MMRank.CrossTestRelations
+
+@[expose] public section
 
 /-! # Общий порождающий вектор отношений и векторные множители -/
 

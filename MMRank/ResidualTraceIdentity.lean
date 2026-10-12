@@ -1,5 +1,9 @@
-import MMRank.RankOneHyperplanes
-import Mathlib.GroupTheory.CosetCover
+module
+
+public import MMRank.RankOneHyperplanes
+public import Mathlib.GroupTheory.CosetCover
+
+@[expose] public section
 
 /-! # Матричное фактор-тождество с одним лишним членом
 

@@ -1,5 +1,9 @@
-import MMRank.RestrictedCoefficients
-import MMRank.AlgorithmGeneralPosition
+module
+
+public import MMRank.RestrictedCoefficients
+public import MMRank.AlgorithmGeneralPosition
+
+@[expose] public section
 
 /-!
 # Полное второе коэффициентное пространство и роль гиперплоскости

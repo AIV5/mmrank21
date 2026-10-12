@@ -1,5 +1,9 @@
-import MMRank.InvariantPointSpan
-import MMRank.PhysicalAtomFamilies
+module
+
+public import MMRank.InvariantPointSpan
+public import MMRank.PhysicalAtomFamilies
+
+@[expose] public section
 
 /-! # Физические атомы инвариантного подпространства
 

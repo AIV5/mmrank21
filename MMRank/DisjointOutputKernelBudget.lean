@@ -1,5 +1,9 @@
-import MMRank.LinearRankSum
-import Mathlib.LinearAlgebra.DFinsupp
+module
+
+public import MMRank.LinearRankSum
+public import Mathlib.LinearAlgebra.DFinsupp
+
+@[expose] public section
 
 /-! # Цена независимых представлений одного выхода
 -/

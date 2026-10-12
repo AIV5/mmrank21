@@ -1,5 +1,9 @@
-import MMRank.PhysicalAtomTransport
-import MMRank.InvariantPhysicalAtoms
+module
+
+public import MMRank.PhysicalAtomTransport
+public import MMRank.InvariantPhysicalAtoms
+
+@[expose] public section
 
 /-! # Семейства физических атомов исходного алгоритма из нулевого роста -/
 namespace MMRank.ExactAlgorithm

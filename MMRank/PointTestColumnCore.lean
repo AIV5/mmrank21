@@ -1,6 +1,10 @@
-import MMRank.MatrixColumnCore
-import MMRank.SupportedTestSpan
-import MMRank.FixedColumnTransport
+module
+
+public import MMRank.MatrixColumnCore
+public import MMRank.SupportedTestSpan
+public import MMRank.FixedColumnTransport
+
+@[expose] public section
 
 /-! # Поддержанный простой тест и общность столбцового ядра
 

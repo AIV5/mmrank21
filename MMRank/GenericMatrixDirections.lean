@@ -1,6 +1,10 @@
-import MMRank.RankOneMatrixSpaces
-import Mathlib.Algebra.MvPolynomial.Funext
-import Mathlib.Algebra.MvPolynomial.NoZeroDivisors
+module
+
+public import MMRank.RankOneMatrixSpaces
+public import Mathlib.Algebra.MvPolynomial.Funext
+public import Mathlib.Algebra.MvPolynomial.NoZeroDivisors
+
+@[expose] public section
 
 /-! # Общий вектор, различающий направления конечного семейства матриц -/
 

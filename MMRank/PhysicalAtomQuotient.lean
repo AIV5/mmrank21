@@ -1,6 +1,10 @@
-import MMRank.ResidualTraceIdentity
-import Mathlib.LinearAlgebra.Projection
-import MMRank.PhysicalAtomUnion
+module
+
+public import MMRank.ResidualTraceIdentity
+public import Mathlib.LinearAlgebra.Projection
+public import MMRank.PhysicalAtomUnion
+
+@[expose] public section
 
 /-! # Прямой переход от физических атомов к фактор-тождеству
 

@@ -1,4 +1,8 @@
-import MMRank.GCDMatrixFactorization
+module
+
+public import MMRank.GCDMatrixFactorization
+
+@[expose] public section
 
 /-! # Общий фактор пространства матриц ранга не больше одного
 

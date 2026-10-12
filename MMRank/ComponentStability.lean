@@ -1,4 +1,8 @@
-import MMRank.InvariantPointDecomposition
+module
+
+public import MMRank.InvariantPointDecomposition
+
+@[expose] public section
 
 /-! # Одномерные ограничения обеспечивают инвариантность -/
 namespace MMRank

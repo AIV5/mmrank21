@@ -1,4 +1,8 @@
-import MMRank.ConnectivityCost
+module
+
+public import MMRank.ConnectivityCost
+
+@[expose] public section
 
 /-! # Точечные слова и одномерные ограничения множителей
 

@@ -1,7 +1,11 @@
-import MMRank.GenericHyperplane
-import MMRank.CoefficientRescaling
-import MMRank.FullBetaNoZeroDivisors
-import MMRank.SupportedTestSpace
+module
+
+public import MMRank.GenericHyperplane
+public import MMRank.CoefficientRescaling
+public import MMRank.FullBetaNoZeroDivisors
+public import MMRank.SupportedTestSpace
+
+@[expose] public section
 
 /-! # Совместный выбор направлений, носителей и усиленного NZ -/
 

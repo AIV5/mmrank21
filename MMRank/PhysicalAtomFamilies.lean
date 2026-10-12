@@ -1,4 +1,8 @@
-import MMRank.PhysicalAtomIntersections
+module
+
+public import MMRank.PhysicalAtomIntersections
+
+@[expose] public section
 
 /-! # Семейства атомов и два общих соседа -/
 namespace MMRank.ExactAlgorithm.PhysicalAtom

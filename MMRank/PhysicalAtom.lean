@@ -1,7 +1,11 @@
-import MMRank.AdjacentPointClasses
-import MMRank.PointWordPhysical
-import MMRank.PointClassBudget
-import MMRank.PointTestColumnCore
+module
+
+public import MMRank.AdjacentPointClasses
+public import MMRank.PointWordPhysical
+public import MMRank.PointClassBudget
+public import MMRank.PointTestColumnCore
+
+@[expose] public section
 
 /-! # Физический атом без выбора общей гиперплоскости -/
 namespace MMRank.ExactAlgorithm

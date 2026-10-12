@@ -1,4 +1,8 @@
-import MMRank.PhysicalConductor
+module
+
+public import MMRank.PhysicalConductor
+
+@[expose] public section
 
 /-! # Билинейные физические тесты Qᵢ и два тождества восстановления
 

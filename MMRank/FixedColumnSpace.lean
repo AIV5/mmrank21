@@ -1,4 +1,8 @@
-import MMRank.PhysicalConductor
+module
+
+public import MMRank.PhysicalConductor
+
+@[expose] public section
 
 /-! # Пространство матриц с фиксированным первым внешним фактором -/
 

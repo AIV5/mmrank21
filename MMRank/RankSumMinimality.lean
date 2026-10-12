@@ -1,7 +1,11 @@
-import MMRank.AlgorithmReflection
-import MMRank.CoefficientRescaling
-import MMRank.PhysicalReindex
-import Mathlib.Order.WellFounded
+module
+
+public import MMRank.AlgorithmReflection
+public import MMRank.CoefficientRescaling
+public import MMRank.PhysicalReindex
+public import Mathlib.Order.WellFounded
+
+@[expose] public section
 
 /-! # Минимум одной суммы рангов и допустимые нормировки -/
 namespace MMRank.ExactAlgorithm

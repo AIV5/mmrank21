@@ -1,6 +1,10 @@
-import MMRank.ConductorComponentWords
-import MMRank.StationaryConductorPlane
-import MMRank.PlaneCapacity
+module
+
+public import MMRank.ConductorComponentWords
+public import MMRank.StationaryConductorPlane
+public import MMRank.PlaneCapacity
+
+@[expose] public section
 
 namespace MMRank.ExactAlgorithm
 open Matrix Module

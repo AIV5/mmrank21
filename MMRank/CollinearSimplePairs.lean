@@ -1,5 +1,9 @@
-import Mathlib.LinearAlgebra.FiniteDimensional.Basic
-import Mathlib.LinearAlgebra.Dual.Lemmas
+module
+
+public import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+public import Mathlib.LinearAlgebra.Dual.Lemmas
+
+@[expose] public section
 
 namespace MMRank
 open Module

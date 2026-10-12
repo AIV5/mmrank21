@@ -1,7 +1,11 @@
-import MMRank.CriticalResidualSliceModel
-import MMRank.FourDimensionalSlice
-import MMRank.DiagonalThreeSlice
-import MMRank.ResidualRayContradiction
+module
+
+public import MMRank.CriticalResidualSliceModel
+public import MMRank.FourDimensionalSlice
+public import MMRank.DiagonalThreeSlice
+public import MMRank.ResidualRayContradiction
+
+@[expose] public section
 
 /-! # Пять независимых тестов нельзя реконструировать восемью простыми срезами
 Критическое следствие над любым полем.

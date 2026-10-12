@@ -1,5 +1,9 @@
-import MMRank.SupportedTestBudgets
-import MMRank.SupportedPartialProduct
+module
+
+public import MMRank.SupportedTestBudgets
+public import MMRank.SupportedPartialProduct
+
+@[expose] public section
 
 namespace MMRank.ExactAlgorithm
 open Matrix Module

@@ -1,8 +1,12 @@
-import MMRank.JointSymmetrizerPairCapacity
-import MMRank.ProportionalBlockFactor
-import MMRank.JointSymmetrizerDomain
-import MMRank.JointSymmetrizerCodomain
-import Mathlib.LinearAlgebra.Matrix.Dual
+module
+
+public import MMRank.JointSymmetrizerPairCapacity
+public import MMRank.ProportionalBlockFactor
+public import MMRank.JointSymmetrizerDomain
+public import MMRank.JointSymmetrizerCodomain
+public import Mathlib.LinearAlgebra.Matrix.Dual
+
+@[expose] public section
 
 /-! # Факторизация из пяти совместных симметризаторов
 

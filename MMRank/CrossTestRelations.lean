@@ -1,7 +1,11 @@
-import MMRank.SupportedTestSpace
-import MMRank.CoordinateDuality
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
+module
+
+public import MMRank.SupportedTestSpace
+public import MMRank.CoordinateDuality
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
+
+@[expose] public section
 
 /-! # Перекрёстные отношения и нижние бюджеты нулевых типов -/
 

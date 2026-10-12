@@ -1,5 +1,9 @@
-import MMRank.BasisFrameMatrices
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import MMRank.BasisFrameMatrices
+public import Mathlib.LinearAlgebra.Matrix.Notation
+
+@[expose] public section
 
 /-! # Пятиэлементный rank1-базис критического аннулятора333
 
@@ -47,7 +51,7 @@ private theorem trace_weighted (a b : Fin 3 → K) (T : Matrix (Fin 3) (Fin 3) K
   simp [Matrix.trace, Matrix.mul_apply, vecMulVec, Fin.sum_univ_succ]
   ring
 
-private theorem decode_mem (a b : Fin 3 → K)
+theorem decode_mem (a b : Fin 3 → K)
     (ha : ∀ i, a i ≠ 0) (hb : ∀ i, b i ≠ 0) (c : Fin 5 → K) :
     decode a b c ∈ weightedSpace a b := by
   constructor
@@ -57,12 +61,12 @@ private theorem decode_mem (a b : Fin 3 → K)
     field_simp [ha, hb]
     ring
 
-private theorem encode_decode (a b : Fin 3 → K)
+theorem encode_decode (a b : Fin 3 → K)
     (ha : ∀ i, a i ≠ 0) (hb : ∀ i, b i ≠ 0) (c : Fin 5 → K) :
     encode a b (decode a b c) = c := by
   ext i; fin_cases i <;> simp [encode, decode] <;> field_simp [ha, hb] <;> ring
 
-private theorem decode_encode (a b : Fin 3 → K)
+theorem decode_encode (a b : Fin 3 → K)
     (ha : ∀ i, a i ≠ 0) (hb : ∀ i, b i ≠ 0)
     (T : weightedSpace a b) : decode a b (encode a b T.val) = T.val := by
   have htrace := T.property.2

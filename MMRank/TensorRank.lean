@@ -1,6 +1,10 @@
-import MMRank.SpanConnected
-import Mathlib.LinearAlgebra.Contraction
-import Mathlib.RingTheory.TensorProduct.Finite
+module
+
+public import MMRank.SpanConnected
+public import Mathlib.LinearAlgebra.Contraction
+public import Mathlib.RingTheory.TensorProduct.Finite
+
+@[expose] public section
 
 /-! # Сокращения тензоров и размерностная оценка присоединения
 

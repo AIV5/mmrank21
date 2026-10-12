@@ -1,6 +1,10 @@
-import MMRank.RestrictedInputs
-import Mathlib.Algebra.Algebra.Operations
-import Mathlib.LinearAlgebra.SesquilinearForm.Orthogonal
+module
+
+public import MMRank.RestrictedInputs
+public import Mathlib.Algebra.Algebra.Operations
+public import Mathlib.LinearAlgebra.SesquilinearForm.Orthogonal
+
+@[expose] public section
 
 /-!
 # Ограниченные коэффициентные пространства

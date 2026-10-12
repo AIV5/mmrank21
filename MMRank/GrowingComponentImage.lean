@@ -1,5 +1,9 @@
-import MMRank.GrowingComponentSimpleImage
-import MMRank.RegularMatrixPencil
+module
+
+public import MMRank.GrowingComponentSimpleImage
+public import MMRank.RegularMatrixPencil
+
+@[expose] public section
 
 /-! # Второй совместный образ компоненты (1,2,2) -/
 

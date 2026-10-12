@@ -1,4 +1,8 @@
-import MMRank.ConductorGrowth
+module
+
+public import MMRank.ConductorGrowth
+
+@[expose] public section
 
 /-! # Перенос кондукторной границы между вложенными пространствами
 

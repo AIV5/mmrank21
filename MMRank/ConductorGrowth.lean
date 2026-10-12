@@ -1,5 +1,9 @@
-import MMRank.Conductor
-import Mathlib.LinearAlgebra.FreeModule.Finite.Matrix
+module
+
+public import MMRank.Conductor
+public import Mathlib.LinearAlgebra.FreeModule.Finite.Matrix
+
+@[expose] public section
 
 /-!
 # Первый шаг роста и начальная оценка кондуктора

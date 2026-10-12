@@ -1,5 +1,9 @@
-import MMRank.BaseChange
-import Mathlib.FieldTheory.RatFunc.Basic
+module
+
+public import MMRank.BaseChange
+public import Mathlib.FieldTheory.RatFunc.Basic
+
+@[expose] public section
 
 /-!
 # Явное бесконечное расширение для подготовительной редукции

@@ -1,10 +1,14 @@
-import MMRank.RankOneMatrixSpaces
-import MMRank.FixedColumnSpace
-import Mathlib.LinearAlgebra.Dimension.Constructions
-import Mathlib.LinearAlgebra.Eigenspace.Minpoly
-import MMRank.ConnectivityCost
-import Mathlib.LinearAlgebra.DFinsupp
-import Mathlib.LinearAlgebra.Basis.Prod
+module
+
+public import MMRank.RankOneMatrixSpaces
+public import MMRank.FixedColumnSpace
+public import Mathlib.LinearAlgebra.Dimension.Constructions
+public import Mathlib.LinearAlgebra.Eigenspace.Minpoly
+public import MMRank.ConnectivityCost
+public import Mathlib.LinearAlgebra.DFinsupp
+public import Mathlib.LinearAlgebra.Basis.Prod
+
+@[expose] public section
 
 /-! # Строковые пространства и подъём базисов при фиксированном столбце
 

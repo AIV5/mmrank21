@@ -1,5 +1,9 @@
-import MMRank.LocalPairReplacement
-import MMRank.LengthTwenty
+module
+
+public import MMRank.LocalPairReplacement
+public import MMRank.LengthTwenty
+
+@[expose] public section
 
 /-! # Суммы рангов и ненулевость после точной локальной замены -/
 

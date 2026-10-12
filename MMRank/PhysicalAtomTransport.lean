@@ -1,4 +1,8 @@
-import MMRank.PhysicalAtomFullClasses
+module
+
+public import MMRank.PhysicalAtomFullClasses
+
+@[expose] public section
 
 /-! # Возврат физических атомов из независимо нормированных ориентаций -/
 namespace MMRank.ExactAlgorithm.PhysicalAtom

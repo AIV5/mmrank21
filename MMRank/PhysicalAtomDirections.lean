@@ -1,5 +1,9 @@
-import MMRank.PhysicalAtomFamilies
-import MMRank.AtomDirectionBases
+module
+
+public import MMRank.PhysicalAtomFamilies
+public import MMRank.AtomDirectionBases
+
+@[expose] public section
 
 /-! # Независимость направлений физических атомов -/
 namespace MMRank.ExactAlgorithm.PhysicalAtom

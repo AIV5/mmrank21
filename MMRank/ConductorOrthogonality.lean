@@ -1,6 +1,10 @@
-import MMRank.ConductorGrowth
-import Mathlib.LinearAlgebra.Matrix.ToLin
-import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+module
+
+public import MMRank.ConductorGrowth
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+public import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+
+@[expose] public section
 
 /-!
 # Двойственность кондуктора и роста для коэффициентных функций

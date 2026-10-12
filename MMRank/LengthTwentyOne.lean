@@ -1,4 +1,8 @@
-import MMRank.LengthTwentyOneFirstRank
+module
+
+public import MMRank.LengthTwentyOneFirstRank
+
+@[expose] public section
 
 /-! # Безусловная нижняя21 над произвольным полем
 

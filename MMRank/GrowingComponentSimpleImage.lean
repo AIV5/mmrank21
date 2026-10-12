@@ -1,6 +1,10 @@
-import MMRank.ConductorTestGeometry
-import MMRank.GrowingComponentPlane
-import MMRank.PhysicalAtomFullClasses
+module
+
+public import MMRank.ConductorTestGeometry
+public import MMRank.GrowingComponentPlane
+public import MMRank.PhysicalAtomFullClasses
+
+@[expose] public section
 
 /-! # Простой тест в сингулярном пространстве поддержанных тестов -/
 

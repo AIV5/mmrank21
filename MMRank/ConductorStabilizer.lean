@@ -1,4 +1,8 @@
-import MMRank.Conductor
+module
+
+public import MMRank.Conductor
+
+@[expose] public section
 
 /-!
 # Мультипликативные стабилизаторы насыщенной пары

@@ -1,4 +1,8 @@
-import MMRank.AlgorithmGenericDirections
+module
+
+public import MMRank.AlgorithmGenericDirections
+
+@[expose] public section
 
 /-! # Данные нормированной общей гиперплоскости
 

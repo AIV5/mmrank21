@@ -1,8 +1,12 @@
-import MMRank.ConductorOrthogonality
-import MMRank.SmallGrowthLocalization
-import MMRank.BasisExtension
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Ring
+module
+
+public import MMRank.ConductorOrthogonality
+public import MMRank.SmallGrowthLocalization
+public import MMRank.BasisExtension
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-! # Два кондуктора через знакопеременную форму
 

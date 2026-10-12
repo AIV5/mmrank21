@@ -1,5 +1,9 @@
-import MMRank.RankOneHyperplanes
-import MMRank.LinearRankSum
+module
+
+public import MMRank.RankOneHyperplanes
+public import MMRank.LinearRankSum
+
+@[expose] public section
 
 /-! # Минимальная оболочка простых матриц с единицей
 Общая линейная часть.

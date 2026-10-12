@@ -1,6 +1,10 @@
-import MMRank.PhysicalConductor
-import MMRank.CoefficientProductTransfer
-import MMRank.NoZeroDivisorGrowth
+module
+
+public import MMRank.PhysicalConductor
+public import MMRank.CoefficientProductTransfer
+public import MMRank.NoZeroDivisorGrowth
+
+@[expose] public section
 
 /-! # Второй кондуктор и его совместимость с первым
 

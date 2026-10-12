@@ -1,4 +1,8 @@
-import MMRank.PointFreeCollinear
+module
+
+public import MMRank.PointFreeCollinear
+
+@[expose] public section
 
 /-! # Физические точечные тесты при смене гиперплоскости и калибровки -/
 namespace MMRank.ExactAlgorithm

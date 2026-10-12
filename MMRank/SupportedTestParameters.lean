@@ -1,6 +1,10 @@
-import MMRank.FixedColumnTransport
-import MMRank.SupportedTestSpan
-import MMRank.CoordinateDecomposition
+module
+
+public import MMRank.FixedColumnTransport
+public import MMRank.SupportedTestSpan
+public import MMRank.CoordinateDecomposition
+
+@[expose] public section
 
 /-! # Параметры пространства поддержанных выходных тестов -/
 

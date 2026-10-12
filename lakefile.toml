@@ -1,7 +1,7 @@
 name = "MMRank"
 version = "0.1.1"
 keywords = ["matrix-multiplication", "bilinear-complexity"]
-defaultTargets = ["MMRank"]
+defaultTargets = ["MMRank", "Solution"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -16,3 +16,9 @@ rev = "065356127b1dc0016f66b7283ce0ce2c4055aa55"
 
 [[lean_lib]]
 name = "MMRank"
+
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"

@@ -1,5 +1,9 @@
-import MMRank.CoordinateDecomposition
-import Mathlib.LinearAlgebra.Dual.Lemmas
+module
+
+public import MMRank.CoordinateDecomposition
+public import Mathlib.LinearAlgebra.Dual.Lemmas
+
+@[expose] public section
 
 /-!
 # Координатные оценки и двойственный критерий разложения

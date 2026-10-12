@@ -1,6 +1,10 @@
-import MMRank.BaseChange
-import MMRank.NormalizedHyperplane
-import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+module
+
+public import MMRank.BaseChange
+public import MMRank.NormalizedHyperplane
+public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+
+@[expose] public section
 
 /-! # Нормированная редукция над алгебраическим замыканием
 

@@ -1,7 +1,11 @@
-import MMRank.RankOneFamilyRigidity
-import Mathlib.Data.Finset.Card
-import Mathlib.Data.Finset.Prod
-import Mathlib.Data.Fintype.EquivFin
+module
+
+public import MMRank.RankOneFamilyRigidity
+public import Mathlib.Data.Finset.Card
+public import Mathlib.Data.Finset.Prod
+public import Mathlib.Data.Fintype.EquivFin
+
+@[expose] public section
 
 /-! # Конечная геометрия трёх лучей
 

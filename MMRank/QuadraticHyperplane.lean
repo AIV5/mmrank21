@@ -1,6 +1,10 @@
-import Mathlib.LinearAlgebra.QuadraticForm.Basic
-import Mathlib.LinearAlgebra.Dual.Lemmas
-import Mathlib.Tactic
+module
+
+public import Mathlib.LinearAlgebra.QuadraticForm.Basic
+public import Mathlib.LinearAlgebra.Dual.Lemmas
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Квадратичная форма, зануляющая гиперплоскость
 

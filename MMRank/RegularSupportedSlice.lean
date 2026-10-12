@@ -1,8 +1,12 @@
-import Mathlib.Algebra.Module.Submodule.Union
-import Mathlib.Algebra.Polynomial.Roots
-import Mathlib.LinearAlgebra.Matrix.Polynomial
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import MMRank.UniqueRelationFactors
+module
+
+public import Mathlib.Algebra.Module.Submodule.Union
+public import Mathlib.Algebra.Polynomial.Roots
+public import Mathlib.LinearAlgebra.Matrix.Polynomial
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import MMRank.UniqueRelationFactors
+
+@[expose] public section
 
 /-! # Регулярный поддержанный тест с полным носителем
 

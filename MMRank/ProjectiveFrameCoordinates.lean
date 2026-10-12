@@ -1,6 +1,10 @@
-import Mathlib.LinearAlgebra.Basis.Basic
-import Mathlib.LinearAlgebra.Dimension.OrzechProperty
-import Mathlib.Tactic
+module
+
+public import Mathlib.LinearAlgebra.Basis.Basic
+public import Mathlib.LinearAlgebra.Dimension.OrzechProperty
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Ненулевые координаты дополнительного направления репера -/
 namespace MMRank

@@ -1,5 +1,9 @@
-import MMRank.SecondConductor
-import MMRank.NormalizedFamily
+module
+
+public import MMRank.SecondConductor
+public import MMRank.NormalizedFamily
+
+@[expose] public section
 
 /-! # Линейные физические семейства первого и второго кондукторов -/
 

@@ -1,6 +1,10 @@
-import MMRank.LinearRankSum
-import MMRank.RankOneHyperplanes
-import MMRank.TraceDuality
+module
+
+public import MMRank.LinearRankSum
+public import MMRank.RankOneHyperplanes
+public import MMRank.TraceDuality
+
+@[expose] public section
 
 /-! # Коэффициентный код и естественные строки ядра реконструкции
 -/

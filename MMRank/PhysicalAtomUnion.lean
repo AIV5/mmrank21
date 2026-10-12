@@ -1,5 +1,9 @@
-import MMRank.PhysicalAtomFamilies
-import Mathlib.Data.Set.Card.Arithmetic
+module
+
+public import MMRank.PhysicalAtomFamilies
+public import Mathlib.Data.Set.Card.Arithmetic
+
+@[expose] public section
 
 /-! # Точный размер объединения физических атомов -/
 namespace MMRank.ExactAlgorithm.PhysicalAtom

@@ -1,5 +1,9 @@
-import MMRank.PhysicalAtomFullClasses
-import MMRank.PhysicalAtomDirections
+module
+
+public import MMRank.PhysicalAtomFullClasses
+public import MMRank.PhysicalAtomDirections
+
+@[expose] public section
 
 /-! # Атомные базисы и диагональный мост к нулевому правилу -/
 namespace MMRank

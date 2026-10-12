@@ -1,4 +1,8 @@
-import MMRank.PhysicalConductor
+module
+
+public import MMRank.PhysicalConductor
+
+@[expose] public section
 
 /-! # Линейное отображение, согласованное с одной линейной формой -/
 

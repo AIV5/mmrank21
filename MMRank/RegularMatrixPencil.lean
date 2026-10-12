@@ -1,6 +1,10 @@
-import MMRank.RankOneMatrixSpaces
-import MMRank.ReciprocalColumnSpace
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import MMRank.RankOneMatrixSpaces
+public import MMRank.ReciprocalColumnSpace
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-! # Регулярность матричного пучка с полными совместными носителями -/
 

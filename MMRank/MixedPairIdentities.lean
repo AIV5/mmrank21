@@ -1,4 +1,8 @@
-import MMRank.LocalPairReplacement
+module
+
+public import MMRank.LocalPairReplacement
+
+@[expose] public section
 
 namespace MMRank
 open Matrix

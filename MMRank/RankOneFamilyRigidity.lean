@@ -1,4 +1,8 @@
-import MMRank.CommonLineRigidity
+module
+
+public import MMRank.CommonLineRigidity
+
+@[expose] public section
 
 /-! # Ранг один в инъективном трёхпараметрическом семействе
 

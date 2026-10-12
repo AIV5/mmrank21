@@ -1,5 +1,9 @@
-import MMRank.GrowthComplex
-import Mathlib.LinearAlgebra.Determinant
+module
+
+public import MMRank.GrowthComplex
+public import Mathlib.LinearAlgebra.Determinant
+
+@[expose] public section
 
 /-!
 # Комплекс роста при двух направлениях

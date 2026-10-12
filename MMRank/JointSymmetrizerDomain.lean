@@ -1,4 +1,8 @@
-import MMRank.JointSymmetrizers
+module
+
+public import MMRank.JointSymmetrizers
+
+@[expose] public section
 
 /-! # Независимые замены параметров и пространства строк -/
 

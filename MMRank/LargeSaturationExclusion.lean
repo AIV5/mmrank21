@@ -1,7 +1,11 @@
-import MMRank.ConductorFactorRanks
-import MMRank.JointSymmetrizerFactorShort
-import MMRank.SeparableSecondConductorProduct
-import MMRank.NormalizedHyperplane
+module
+
+public import MMRank.ConductorFactorRanks
+public import MMRank.JointSymmetrizerFactorShort
+public import MMRank.SeparableSecondConductorProduct
+public import MMRank.NormalizedHyperplane
+
+@[expose] public section
 
 /-! # Исключение большого насыщения при dim Z=2
 

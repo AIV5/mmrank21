@@ -1,6 +1,10 @@
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.LinearAlgebra.Finsupp.LinearCombination
-import Mathlib.Data.Finset.Powerset
+module
+
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+public import Mathlib.Data.Finset.Powerset
+
+@[expose] public section
 
 /-! # Минимальное семейство, пересекающее заданное подпространство
 

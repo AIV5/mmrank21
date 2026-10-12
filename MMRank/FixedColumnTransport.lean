@@ -1,4 +1,8 @@
-import MMRank.FixedColumnSpace
+module
+
+public import MMRank.FixedColumnSpace
+
+@[expose] public section
 
 /-! # Тесты в фиксированном столбцовом пространстве и транспонирование -/
 

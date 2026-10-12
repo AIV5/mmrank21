@@ -1,5 +1,9 @@
-import MMRank.ActiveCoordinateComponents
-import MMRank.PointWords
+module
+
+public import MMRank.ActiveCoordinateComponents
+public import MMRank.PointWords
+
+@[expose] public section
 
 namespace MMRank
 open Module

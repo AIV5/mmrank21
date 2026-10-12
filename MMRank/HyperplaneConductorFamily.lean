@@ -1,6 +1,10 @@
-import MMRank.CommonLineRigidity
-import MMRank.SecondConductor
-import MMRank.RankFactorization
+module
+
+public import MMRank.CommonLineRigidity
+public import MMRank.SecondConductor
+public import MMRank.RankFactorization
+
+@[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
 

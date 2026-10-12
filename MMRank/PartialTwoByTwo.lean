@@ -1,6 +1,10 @@
-import MMRank.ThreeSliceFlattening
-import MMRank.LinearSubstitution
-import Mathlib.LinearAlgebra.Matrix.Dual
+module
+
+public import MMRank.ThreeSliceFlattening
+public import MMRank.LinearSubstitution
+public import Mathlib.LinearAlgebra.Matrix.Dual
+
+@[expose] public section
 
 /-! # Три выхода произведения 2×n на n×2: обе нормальные формы -/
 

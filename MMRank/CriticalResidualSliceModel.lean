@@ -1,4 +1,8 @@
-import MMRank.TraceSliceSpace
+module
+
+public import MMRank.TraceSliceSpace
+
+@[expose] public section
 
 /-! # Восемь срезов и пятиэлементный базис выхода
 Общий остаточный контракт,

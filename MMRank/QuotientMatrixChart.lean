@@ -1,4 +1,8 @@
-import MMRank.RestrictedInputs
+module
+
+public import MMRank.RestrictedInputs
+
+@[expose] public section
 
 /-! # Матричные координаты фактора по подпространству -/
 

@@ -1,4 +1,8 @@
-import MMRank.AnnihilatorCapacity
+module
+
+public import MMRank.AnnihilatorCapacity
+
+@[expose] public section
 
 /-! # Нормировка совместимых семейств по обратимому значению -/
 

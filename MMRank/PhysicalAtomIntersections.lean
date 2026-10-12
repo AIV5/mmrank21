@@ -1,4 +1,8 @@
-import MMRank.PhysicalAtom
+module
+
+public import MMRank.PhysicalAtom
+
+@[expose] public section
 
 /-! # Пересечение соседних физических атомов в произвольных размерах -/
 namespace MMRank.ExactAlgorithm.PhysicalAtom

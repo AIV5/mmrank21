@@ -1,5 +1,9 @@
-import MMRank.JointSymmetrizers
-import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+module
+
+public import MMRank.JointSymmetrizers
+public import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+
+@[expose] public section
 
 /-! # Диагональное семейство из базисных простых симметризаторов -/
 namespace MMRank

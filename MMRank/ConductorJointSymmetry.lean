@@ -1,7 +1,11 @@
-import MMRank.ConductorLinearFamilies
-import MMRank.HyperplaneConductorFamily
-import MMRank.CoordinateJointSymmetrizers
-import MMRank.JointSymmetrizerPairCapacity
+module
+
+public import MMRank.ConductorLinearFamilies
+public import MMRank.HyperplaneConductorFamily
+public import MMRank.CoordinateJointSymmetrizers
+public import MMRank.JointSymmetrizerPairCapacity
+
+@[expose] public section
 
 /-! # Физическая оболочка в пространстве совместных симметризаторов
 

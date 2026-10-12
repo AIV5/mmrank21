@@ -1,5 +1,9 @@
-import MMRank.RestrictedTwoConductorBound
-import MMRank.TwoDirectionGrowth
+module
+
+public import MMRank.RestrictedTwoConductorBound
+public import MMRank.TwoDirectionGrowth
+
+@[expose] public section
 
 /-!
 # Кондукторные оценки для ограниченных коэффициентных пространств

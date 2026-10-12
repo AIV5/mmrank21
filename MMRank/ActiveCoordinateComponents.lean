@@ -1,5 +1,9 @@
-import MMRank.ConnectivityCost
-import MMRank.ConductorSupportInjection
+module
+
+public import MMRank.ConnectivityCost
+public import MMRank.ConductorSupportInjection
+
+@[expose] public section
 
 /-! # Активные координатные компоненты без нулевых блоков -/
 

@@ -1,5 +1,9 @@
-import MMRank.RegularPencilGrowth
-import MMRank.ComponentStability
+module
+
+public import MMRank.RegularPencilGrowth
+public import MMRank.ComponentStability
+
+@[expose] public section
 
 /-! # Один обмен запрещает рост насыщенного пространства
 

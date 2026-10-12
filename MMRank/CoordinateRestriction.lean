@@ -1,5 +1,9 @@
-import MMRank.LinearSubstitution
-import Mathlib.LinearAlgebra.Projection
+module
+
+public import MMRank.LinearSubstitution
+public import Mathlib.LinearAlgebra.Projection
+
+@[expose] public section
 
 namespace MMRank
 open Module

@@ -1,5 +1,9 @@
-import MMRank.RankNormalForm
-import MMRank.TraceDuality
+module
+
+public import MMRank.RankNormalForm
+public import MMRank.TraceDuality
+
+@[expose] public section
 
 /-! # Две нормальные формы следовой гиперплоскости матриц порядка2 -/
 

@@ -1,4 +1,8 @@
-import MMRank.ConductorLengthBounds
+module
+
+public import MMRank.ConductorLengthBounds
+
+@[expose] public section
 
 /-! # Бюджеты первого класса без ненулевости его тестового пространства -/
 

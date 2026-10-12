@@ -1,5 +1,9 @@
-import MMRank.PointWords
-import MMRank.ConductorBoundaryTransfer
+module
+
+public import MMRank.PointWords
+public import MMRank.ConductorBoundaryTransfer
+
+@[expose] public section
 
 /-! # Локализация малого роста и нижняя кондукторная граница
 

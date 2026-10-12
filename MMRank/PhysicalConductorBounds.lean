@@ -1,6 +1,10 @@
-import MMRank.PhysicalContractions
-import MMRank.SeparableMapDimension
-import Mathlib.LinearAlgebra.Dimension.Constructions
+module
+
+public import MMRank.PhysicalContractions
+public import MMRank.SeparableMapDimension
+public import Mathlib.LinearAlgebra.Dimension.Constructions
+
+@[expose] public section
 
 /-! # Физические верхние оценки насыщенной оболочки
 

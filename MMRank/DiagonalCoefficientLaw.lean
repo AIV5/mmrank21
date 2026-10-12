@@ -1,4 +1,8 @@
-import MMRank.BasisDiagonalFamily
+module
+
+public import MMRank.BasisDiagonalFamily
+
+@[expose] public section
 
 /-! # Полный носитель параметров и нулевое правило диагонального семейства -/
 namespace MMRank

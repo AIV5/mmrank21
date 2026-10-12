@@ -1,5 +1,9 @@
-import MMRank.ThreeRayGeometry
-import MMRank.DisjointOutputKernelBudget
+module
+
+public import MMRank.ThreeRayGeometry
+public import MMRank.DisjointOutputKernelBudget
+
+@[expose] public section
 
 /-! # Один центр задаёт не более одного направления выхода
 

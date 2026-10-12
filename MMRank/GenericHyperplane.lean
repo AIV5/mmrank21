@@ -1,5 +1,9 @@
-import MMRank.MatrixColumnCore
-import Mathlib.GroupTheory.CosetCover
+module
+
+public import MMRank.MatrixColumnCore
+public import Mathlib.GroupTheory.CosetCover
+
+@[expose] public section
 
 /-! # Общность гиперплоскости одновременно с различением направлений -/
 

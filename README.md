@@ -78,6 +78,21 @@ The lockfile fixes the dependency versions used to check the proof. See
 [verification details](docs/VERIFICATION.md) for the commands and trust
 assumptions. The formalization has not undergone independent peer review.
 
+For an additional check of the advertised statement against the proof, run:
+
+```sh
+lake env lake comparator --config comparator.json
+```
+
+This uses the toolchain's Comparator and the independent NanoDa kernel checker.
+It requires Bubblewrap (`bwrap`) with working unprivileged user namespaces.
+[`Challenge.lean`](Challenge.lean) states the result using only Mathlib;
+[`Solution.lean`](Solution.lean) proves the same statement from the development.
+The deliberate `sorry` in Challenge is a statement placeholder checked against
+Solution, and is not imported by the proof library or the ordinary axiom audit.
+See [verification details](docs/VERIFICATION.md#comparator) for the scope of this
+check and [`formalization.yaml`](formalization.yaml) for structured provenance.
+
 ## Read the proof
 
 The argument extends a hypothetical short algorithm to an algebraic closure

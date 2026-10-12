@@ -1,5 +1,9 @@
-import MMRank.CommonLineRigidity
-import Mathlib.LinearAlgebra.Matrix.Symmetric
+module
+
+public import MMRank.CommonLineRigidity
+public import Mathlib.LinearAlgebra.Matrix.Symmetric
+
+@[expose] public section
 
 /-! # Совместные симметризаторы и перенос взаимности
 

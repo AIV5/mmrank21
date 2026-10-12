@@ -1,5 +1,9 @@
-import MMRank.ReciprocalColumnSpace
-import MMRank.RestrictedRankBudget
+module
+
+public import MMRank.ReciprocalColumnSpace
+public import MMRank.RestrictedRankBudget
+
+@[expose] public section
 
 /-! # Полная свёртка пространства тестов и её ранг -/
 

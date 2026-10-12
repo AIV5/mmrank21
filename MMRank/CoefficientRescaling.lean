@@ -1,4 +1,8 @@
-import MMRank.RestrictedSupport
+module
+
+public import MMRank.RestrictedSupport
+
+@[expose] public section
 
 /-!
 # Компенсированное изменение масштаба коэффициентов

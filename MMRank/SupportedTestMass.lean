@@ -1,4 +1,8 @@
-import MMRank.SupportedTestParameters
+module
+
+public import MMRank.SupportedTestParameters
+
+@[expose] public section
 
 /-! # Ранговый бюджет всего пространства поддержанных тестов -/
 

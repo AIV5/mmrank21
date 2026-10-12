@@ -1,4 +1,8 @@
-import MMRank.MinimalTestBasis
+module
+
+public import MMRank.MinimalTestBasis
+
+@[expose] public section
 
 /-! # Согласование двух соседних классов минимального теста -/
 

@@ -1,8 +1,12 @@
-import MMRank.RankOneMatrixSpaces
-import MMRank.LinearRankSum
-import MMRank.ConnectivityCost
-import Mathlib.LinearAlgebra.QuadraticForm.Basic
-import Mathlib.LinearAlgebra.TensorProduct.Pi
+module
+
+public import MMRank.RankOneMatrixSpaces
+public import MMRank.LinearRankSum
+public import MMRank.ConnectivityCost
+public import Mathlib.LinearAlgebra.QuadraticForm.Basic
+public import Mathlib.LinearAlgebra.TensorProduct.Pi
+
+@[expose] public section
 
 /-! # Локальный разделитель в четырёхмерном rank1-пространстве
 

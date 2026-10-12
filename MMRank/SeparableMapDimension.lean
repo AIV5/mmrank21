@@ -1,5 +1,9 @@
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.LinearAlgebra.Dual.Defs
+module
+
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import Mathlib.LinearAlgebra.Dual.Defs
+
+@[expose] public section
 
 /-! # Размерность пространства разделённых линейных отображений
 

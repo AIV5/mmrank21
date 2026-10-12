@@ -1,5 +1,9 @@
-import MMRank.ResidualRayOutputBudget
-import MMRank.QuadraticThreeRay
+module
+
+public import MMRank.ResidualRayOutputBudget
+public import MMRank.QuadraticThreeRay
+
+@[expose] public section
 
 /-! # Короткий хвост реконструкции простых срезов
 

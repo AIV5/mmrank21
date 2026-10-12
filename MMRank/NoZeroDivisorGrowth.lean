@@ -1,5 +1,9 @@
-import MMRank.ConnectivityCost
-import MMRank.CoordinateProductGrowth
+module
+
+public import MMRank.ConnectivityCost
+public import MMRank.CoordinateProductGrowth
+
+@[expose] public section
 
 /-! # Цена насыщенного роста при отсутствии делителей нуля
 

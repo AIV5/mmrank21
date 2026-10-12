@@ -1,1 +1,3 @@
-import MMRank.PublicTheorem
+module
+
+public import MMRank.PublicTheorem

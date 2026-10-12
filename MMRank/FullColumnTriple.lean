@@ -1,5 +1,9 @@
-import MMRank.PointClassBudget
-import MMRank.MinimalTestBasis
+module
+
+public import MMRank.PointClassBudget
+public import MMRank.MinimalTestBasis
+
+@[expose] public section
 
 namespace MMRank.ExactAlgorithm
 open Matrix Module

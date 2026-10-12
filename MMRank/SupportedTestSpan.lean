@@ -1,4 +1,8 @@
-import MMRank.FixedColumnSpace
+module
+
+public import MMRank.FixedColumnSpace
+
+@[expose] public section
 
 /-! # Выходной тест и коэффициентная оболочка его носителя -/
 

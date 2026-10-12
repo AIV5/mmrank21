@@ -1,5 +1,9 @@
-import MMRank.FixedColumnBasis
-import MMRank.SubspaceMatrixChart
+module
+
+public import MMRank.FixedColumnBasis
+public import MMRank.SubspaceMatrixChart
+
+@[expose] public section
 
 /-! # Базисы ранга один в матричных гиперплоскостях
 

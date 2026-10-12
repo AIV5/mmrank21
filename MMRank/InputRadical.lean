@@ -1,5 +1,9 @@
-import MMRank.AlgorithmReflection
-import MMRank.SupportedTestParameters
+module
+
+public import MMRank.AlgorithmReflection
+public import MMRank.SupportedTestParameters
+
+@[expose] public section
 
 /-! # Радикал подстановки и пространство поддержанных тестов -/
 

@@ -1,5 +1,9 @@
-import MMRank.TraceSliceSpace
-import MMRank.QuadraticThreeRay
+module
+
+public import MMRank.TraceSliceSpace
+public import MMRank.QuadraticThreeRay
+
+@[expose] public section
 
 /-! # Диагональный трёхмерный срез: три луча или одиночный канал
 Простые срезы минимальной

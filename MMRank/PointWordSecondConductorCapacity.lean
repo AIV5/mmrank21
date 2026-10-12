@@ -1,5 +1,9 @@
-import MMRank.PointWordPhysical
-import MMRank.LowRankConductor
+module
+
+public import MMRank.PointWordPhysical
+public import MMRank.LowRankConductor
+
+@[expose] public section
 
 /-! # Вместимость второго кондуктора при одном точечном слове
 

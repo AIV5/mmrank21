@@ -1,7 +1,11 @@
-import MMRank.RankFactorization
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.LinearCombination
+module
+
+public import MMRank.RankFactorization
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.LinearCombination
+
+@[expose] public section
 
 /-! # Миноры и матрицы с носителем в одной строке или столбце -/
 

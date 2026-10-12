@@ -1,7 +1,11 @@
-import MMRank.RestrictedCoefficients
-import MMRank.AlgorithmGeneralPosition
-import MMRank.LengthReduction
-import Mathlib.Algebra.Module.Submodule.Union
+module
+
+public import MMRank.RestrictedCoefficients
+public import MMRank.AlgorithmGeneralPosition
+public import MMRank.LengthReduction
+public import Mathlib.Algebra.Module.Submodule.Union
+
+@[expose] public section
 
 /-!
 # Носители ограниченных следовых координат

@@ -1,5 +1,9 @@
-import MMRank.MixedPairIdentities
-import MMRank.OnePairRankDescent
+module
+
+public import MMRank.MixedPairIdentities
+public import MMRank.OnePairRankDescent
+
+@[expose] public section
 
 /-! # Операторное выделение одной простой пары
 

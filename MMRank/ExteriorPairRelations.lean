@@ -1,5 +1,9 @@
-import MMRank.InputRadical
-import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+module
+
+public import MMRank.InputRadical
+public import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+
+@[expose] public section
 
 /-! # Внешние отношения подстановки и размерностный бюджет -/
 

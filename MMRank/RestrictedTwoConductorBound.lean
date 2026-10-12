@@ -1,5 +1,9 @@
-import MMRank.RestrictedCoefficients
-import MMRank.ConductorAlternatingBound
+module
+
+public import MMRank.RestrictedCoefficients
+public import MMRank.ConductorAlternatingBound
+
+@[expose] public section
 
 /-! # Прямое применение оценки двух кондукторов к точному алгоритму
 

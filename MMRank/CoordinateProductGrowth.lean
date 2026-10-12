@@ -1,4 +1,8 @@
-import MMRank.CoordinateDuality
+module
+
+public import MMRank.CoordinateDuality
+
+@[expose] public section
 
 /-! # Рост произведения координатных пространств без делителей нуля
 

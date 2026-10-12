@@ -1,6 +1,10 @@
-import MMRank.PhysicalAtomIntersections
-import MMRank.PointTestRecalibration
-import MMRank.SecondConductorIntoFamily
+module
+
+public import MMRank.PhysicalAtomIntersections
+public import MMRank.PointTestRecalibration
+public import MMRank.SecondConductorIntoFamily
+
+@[expose] public section
 
 /-! # Полные физические классы атома и тесты нового кондуктора -/
 namespace MMRank.ExactAlgorithm.PhysicalAtom

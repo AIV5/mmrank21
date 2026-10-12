@@ -1,4 +1,8 @@
-import MMRank.CoordinateJointSymmetrizers
+module
+
+public import MMRank.CoordinateJointSymmetrizers
+
+@[expose] public section
 
 /-! # Линейный фактор семейства пропорциональных прямоугольных блоков -/
 namespace MMRank

@@ -1,7 +1,11 @@
-import MMRank.CriticalResidualExclusion
-import MMRank.CriticalThreeAnnihilator
-import MMRank.PhysicalAtomResidual
-import MMRank.PhysicalAtomDirections
+module
+
+public import MMRank.CriticalResidualExclusion
+public import MMRank.CriticalThreeAnnihilator
+public import MMRank.PhysicalAtomResidual
+public import MMRank.PhysicalAtomDirections
+
+@[expose] public section
 
 /-! # Четыре физических атома исключаются одним остаточным бюджетом
 Бесконечность нужна только для готового

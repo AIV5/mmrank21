@@ -1,8 +1,12 @@
-import MMRank.JointSymmetrizerNZDimension
-import MMRank.PointWordSecondConductorCapacity
-import MMRank.RestrictedConductorBounds
-import MMRank.PhysicalConductorBounds
-import MMRank.LargeSaturationExclusion
+module
+
+public import MMRank.JointSymmetrizerNZDimension
+public import MMRank.PointWordSecondConductorCapacity
+public import MMRank.RestrictedConductorBounds
+public import MMRank.PhysicalConductorBounds
+public import MMRank.LargeSaturationExclusion
+
+@[expose] public section
 
 /-! # Критические размерности из одного пространства симметризаторов
 

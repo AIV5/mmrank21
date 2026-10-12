@@ -1,6 +1,10 @@
-import MMRank.RegularMatrixPencil
-import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
-import Mathlib.FieldTheory.IsAlgClosed.Basic
+module
+
+public import MMRank.RegularMatrixPencil
+public import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
+public import Mathlib.FieldTheory.IsAlgClosed.Basic
+
+@[expose] public section
 
 /-! # Двумерная геометрия резольвентного уравнения
 

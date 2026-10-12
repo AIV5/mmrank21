@@ -1,5 +1,9 @@
-import MMRank.ReciprocalLine
-import MMRank.PointWords
+module
+
+public import MMRank.ReciprocalLine
+public import MMRank.PointWords
+
+@[expose] public section
 
 /-! # Физический выходной тест точечного слова
 

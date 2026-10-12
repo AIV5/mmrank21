@@ -1,5 +1,9 @@
-import MMRank.LocalPairReplacement
-import MMRank.RankSumMinimality
+module
+
+public import MMRank.LocalPairReplacement
+public import MMRank.RankSumMinimality
+
+@[expose] public section
 
 /-! # Один низкоранговый обмен полной билинейной пары
 

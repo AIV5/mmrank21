@@ -1,6 +1,10 @@
-import Mathlib.LinearAlgebra.Basis.VectorSpace
-import Mathlib.LinearAlgebra.Dual.Lemmas
-import Mathlib.Data.Set.Card
+module
+
+public import Mathlib.LinearAlgebra.Basis.VectorSpace
+public import Mathlib.LinearAlgebra.Dual.Lemmas
+public import Mathlib.Data.Set.Card
+
+@[expose] public section
 
 /-! # Замещение выбранных независимых первых форм над произвольным полем -/
 

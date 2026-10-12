@@ -1,4 +1,8 @@
-import MMRank.AnnihilatorCapacity
+module
+
+public import MMRank.AnnihilatorCapacity
+
+@[expose] public section
 
 /-! # Жёсткость совместимых семейств с общим одномерным образом -/
 

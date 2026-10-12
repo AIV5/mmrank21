@@ -1,5 +1,9 @@
-import MMRank.Conductor
-import Mathlib.Algebra.Module.Submodule.Equiv
+module
+
+public import MMRank.Conductor
+public import Mathlib.Algebra.Module.Submodule.Equiv
+
+@[expose] public section
 
 /-! # Реализация кондуктора через линейное вложение
 

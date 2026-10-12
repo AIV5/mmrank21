@@ -1,6 +1,10 @@
-import MMRank.GenericMatrixDirections
-import MMRank.PointWordPhysical
-import MMRank.SupportedTestSpan
+module
+
+public import MMRank.GenericMatrixDirections
+public import MMRank.PointWordPhysical
+public import MMRank.SupportedTestSpan
+
+@[expose] public section
 
 /-! # Полная коэффициентная оболочка точечного направления -/
 

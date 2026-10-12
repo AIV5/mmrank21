@@ -1,7 +1,11 @@
-import Mathlib.Algebra.GCDMonoid.Finset
-import Mathlib.RingTheory.UniqueFactorizationDomain.NormalizedFactors
-import MMRank.RankOneMinors
-import Mathlib.RingTheory.Localization.FractionRing
+module
+
+public import Mathlib.Algebra.GCDMonoid.Finset
+public import Mathlib.RingTheory.UniqueFactorizationDomain.NormalizedFactors
+public import MMRank.RankOneMinors
+public import Mathlib.RingTheory.Localization.FractionRing
+
+@[expose] public section
 
 /-! # Внешнее произведение над областью с gcd
 

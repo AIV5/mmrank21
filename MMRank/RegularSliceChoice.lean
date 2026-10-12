@@ -1,6 +1,10 @@
-import MMRank.RegularSupportedSlice
-import MMRank.RectangularTestChart
-import MMRank.RegularMatrixPencil
+module
+
+public import MMRank.RegularSupportedSlice
+public import MMRank.RectangularTestChart
+public import MMRank.RegularMatrixPencil
+
+@[expose] public section
 
 /-! # Независимая пара тестов с регулярным первым тестом
 

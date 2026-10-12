@@ -1,6 +1,10 @@
-import MMRank.RankOneFourSpace
-import MMRank.QuadraticFormCoordinates
-import MMRank.TraceSliceSpace
+module
+
+public import MMRank.RankOneFourSpace
+public import MMRank.QuadraticFormCoordinates
+public import MMRank.TraceSliceSpace
+
+@[expose] public section
 
 /-! # Четырёхмерный срез выделяет квадратично отделяемый выход
 -/

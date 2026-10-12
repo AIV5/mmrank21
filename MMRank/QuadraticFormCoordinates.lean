@@ -1,4 +1,8 @@
-import MMRank.QuadraticThreeRay
+module
+
+public import MMRank.QuadraticThreeRay
+
+@[expose] public section
 
 /-! # Квадратичные формы в шести координатах, включая характеристику2
 Представление не требует associated.

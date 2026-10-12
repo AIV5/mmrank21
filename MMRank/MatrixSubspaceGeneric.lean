@@ -1,5 +1,9 @@
-import MMRank.GenericMatrixDirections
-import Mathlib.LinearAlgebra.Dual.Lemmas
+module
+
+public import MMRank.GenericMatrixDirections
+public import Mathlib.LinearAlgebra.Dual.Lemmas
+
+@[expose] public section
 
 namespace MMRank
 open Matrix MvPolynomial

@@ -1,6 +1,10 @@
-import MMRank.ConductorStabilizer
-import Mathlib.LinearAlgebra.Pi
-import Mathlib.Algebra.Group.Indicator
+module
+
+public import MMRank.ConductorStabilizer
+public import Mathlib.LinearAlgebra.Pi
+public import Mathlib.Algebra.Group.Indicator
+
+@[expose] public section
 
 /-!
 # Координатные сечения и перенос разложений

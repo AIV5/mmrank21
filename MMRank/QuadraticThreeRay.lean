@@ -1,8 +1,12 @@
-import Mathlib.LinearAlgebra.Matrix.Nondegenerate
-import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
-import MMRank.RankOneHyperplanes
-import MMRank.ThreeRayGeometry
-import MMRank.QuadraticHyperplane
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Nondegenerate
+public import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
+public import MMRank.RankOneHyperplanes
+public import MMRank.ThreeRayGeometry
+public import MMRank.QuadraticHyperplane
+
+@[expose] public section
 
 /-! # Шесть квадратичных координат и сепараторы трёх лучей
 

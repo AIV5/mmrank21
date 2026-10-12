@@ -1,8 +1,12 @@
-import MMRank.ConductorRealization
-import MMRank.RestrictedCoefficients
-import Mathlib.LinearAlgebra.Matrix.Bilinear
-import Mathlib.LinearAlgebra.Matrix.Dual
-import Mathlib.LinearAlgebra.Dual.Lemmas
+module
+
+public import MMRank.ConductorRealization
+public import MMRank.RestrictedCoefficients
+public import Mathlib.LinearAlgebra.Matrix.Bilinear
+public import Mathlib.LinearAlgebra.Matrix.Dual
+public import Mathlib.LinearAlgebra.Dual.Lemmas
+
+@[expose] public section
 
 /-! # Физическое представление кондуктора и взаимность
 

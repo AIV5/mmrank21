@@ -1,6 +1,10 @@
-import MMRank.SecondConductorIntoFamily
-import MMRank.GenericHyperplane
-import MMRank.RestrictedTwoConductorBound
+module
+
+public import MMRank.SecondConductorIntoFamily
+public import MMRank.GenericHyperplane
+public import MMRank.RestrictedTwoConductorBound
+
+@[expose] public section
 
 /-! # Полная размерность произведения третьих слов на второй кондуктор
 

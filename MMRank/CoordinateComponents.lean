@@ -1,6 +1,10 @@
-import MMRank.CoordinateDuality
-import MMRank.SpanConnected
-import Mathlib.Data.Set.Finite.Lattice
+module
+
+public import MMRank.CoordinateDuality
+public import MMRank.SpanConnected
+public import Mathlib.Data.Set.Finite.Lattice
+
+@[expose] public section
 
 /-!
 # Канонические координатные компоненты

@@ -1,5 +1,9 @@
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+
+@[expose] public section
 
 /-!
 # Ранговая факторизация

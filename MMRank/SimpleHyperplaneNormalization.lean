@@ -1,5 +1,9 @@
-import MMRank.CoefficientRescaling
-import MMRank.PointWordPhysical
+module
+
+public import MMRank.CoefficientRescaling
+public import MMRank.PointWordPhysical
+
+@[expose] public section
 
 /-! # Нормировка единицы без общего положения
 

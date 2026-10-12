@@ -1,6 +1,10 @@
-import MMRank.ConnectedTensorDimension
-import MMRank.ProductTensorEmbedding
-import Mathlib.Algebra.DirectSum.Module
+module
+
+public import MMRank.ConnectedTensorDimension
+public import MMRank.ProductTensorEmbedding
+public import Mathlib.Algebra.DirectSum.Module
+
+@[expose] public section
 
 /-! # Локальная и суммарная цена связности насыщенной пары
 

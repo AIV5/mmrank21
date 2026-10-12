@@ -1,5 +1,9 @@
-import MMRank.Algorithm
-import Mathlib.LinearAlgebra.Matrix.Rank
+module
+
+public import MMRank.Algorithm
+public import Mathlib.LinearAlgebra.Matrix.Rank
+
+@[expose] public section
 
 /-! # Перенумерация физических координат точного алгоритма -/
 namespace MMRank

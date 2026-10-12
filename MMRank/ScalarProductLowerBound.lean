@@ -1,5 +1,9 @@
-import MMRank.PartialProductTransport
-import MMRank.CoordinateRestriction
+module
+
+public import MMRank.PartialProductTransport
+public import MMRank.CoordinateRestriction
+
+@[expose] public section
 
 namespace MMRank
 open Matrix Module

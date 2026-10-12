@@ -1,7 +1,11 @@
-import MMRank.PhysicalConductorBounds
-import MMRank.FullBetaNoZeroDivisors
-import MMRank.RestrictedSupport
-import MMRank.CoordinateDuality
+module
+
+public import MMRank.PhysicalConductorBounds
+public import MMRank.FullBetaNoZeroDivisors
+public import MMRank.RestrictedSupport
+public import MMRank.CoordinateDuality
+
+@[expose] public section
 
 /-! # Носитель кондуктора и инъективное физическое семейство
 

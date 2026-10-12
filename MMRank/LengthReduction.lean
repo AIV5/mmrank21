@@ -1,5 +1,9 @@
-import MMRank.Algorithm
-import Mathlib.LinearAlgebra.Dimension.DivisionRing
+module
+
+public import MMRank.Algorithm
+public import Mathlib.LinearAlgebra.Dimension.DivisionRing
+
+@[expose] public section
 
 /-!
 # Удаление нулевых слагаемых и доведение длины

@@ -1,5 +1,9 @@
-import MMRank.TensorRank
-import MMRank.MinimalSpanBridge
+module
+
+public import MMRank.TensorRank
+public import MMRank.MinimalSpanBridge
+
+@[expose] public section
 
 /-! # Размерностное неравенство для связного семейства простых тензоров
 

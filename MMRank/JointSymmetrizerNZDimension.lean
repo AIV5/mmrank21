@@ -1,7 +1,11 @@
-import MMRank.JointSymmetrizers
-import MMRank.RankOneMatrixSpaces
-import MMRank.RestrictedInputs
-import MMRank.NonsingularBilinear
+module
+
+public import MMRank.JointSymmetrizers
+public import MMRank.RankOneMatrixSpaces
+public import MMRank.RestrictedInputs
+public import MMRank.NonsingularBilinear
+
+@[expose] public section
 
 /-! # Малые совместные симметризаторы семейства без делителей нуля
 
