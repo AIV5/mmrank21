@@ -1,0 +1,21 @@
+name: Lean proof and axiom audit
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+      - name: Audit proof axioms
+        run: ./scripts/check.sh

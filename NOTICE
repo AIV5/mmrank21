@@ -1,0 +1,8 @@
+A lower bound of 21 for 3 x 3 matrix multiplication over every field
+Copyright 2026 Andrey Ivanov
+
+This project is licensed under the Apache License, Version 2.0.
+See LICENSE for the complete terms.
+
+Lean, mathlib, and other separately installed dependencies retain their
+own copyright notices and licenses.

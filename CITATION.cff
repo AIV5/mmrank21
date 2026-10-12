@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "Please cite this software if you use this formalization."
+type: software
+license: Apache-2.0
+title: "A lower bound of 21 for 3 x 3 matrix multiplication over every field"
+authors:
+  - family-names: Ivanov
+    given-names: Andrey
+version: 0.1.0
+date-released: 2026-10-12
+repository-code: "https://github.com/AIV5/mmrank21"
+url: "https://github.com/AIV5/mmrank21/releases/tag/v0.1.0"
+abstract: >-
+  Lean 4 proof that every exact bilinear algorithm for multiplying two
+  3 x 3 matrices over an arbitrary field uses at least 21 products of input linear forms.
+  Includes a public statement in terms of arbitrary linear input forms,
+  pinned dependencies, and reproducible build and axiom checks.
+keywords:
+  - matrix multiplication
+  - tensor rank
+  - bilinear complexity
+  - Lean 4
+  - formalized mathematics
