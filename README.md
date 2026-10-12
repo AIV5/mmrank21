@@ -139,6 +139,7 @@ ChatGPT/Codex, including mathematical exploration, Lean implementation,
 proof refactoring and documentation.
 
 Citation metadata is in [`CITATION.cff`](CITATION.cff).
+DOI: [10.5281/zenodo.23324839](https://doi.org/10.5281/zenodo.23324839).
 
 **License:** [Apache License 2.0](LICENSE). Copyright 2026 Andrey Ivanov.
 See [NOTICE](NOTICE). Dependencies retain their own licenses.
