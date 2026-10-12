@@ -14,7 +14,7 @@ check it, and provides a short route through the formal development.
 ## The theorem
 
 Let $K$ be a field and $I$ a finite set. Suppose that $a_i,b_i$ are
-$K$-linear forms on $\operatorname{Mat}_3(K)$ and $W_i\in\operatorname{Mat}_3(K)$,
+$K$-linear forms on $\mathrm{Mat}_3(K)$ and $W_i\in\mathrm{Mat}_3(K)$,
 and that, for every pair of matrices $A,B$,
 
 $$AB=\sum_{i\in I}a_i(A)b_i(B)W_i.$$
