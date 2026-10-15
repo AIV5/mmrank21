@@ -1,0 +1,1564 @@
+% !TeX program = xelatex
+% Companion to the Lean sources in AIV5/mmrank21; see README.md in this directory.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm,headheight=15pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{DejaVu Serif}[Scale=0.93]
+\setsansfont{DejaVu Sans}[Scale=0.93]
+\setmonofont{DejaVu Sans Mono}[Scale=0.8]
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{tikz-cd}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{booktabs,longtable}
+\usepackage[unicode,colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\hypersetup{pdftitle={A lower bound of 21 for 3 x 3 matrix multiplication},
+pdfauthor={Andrey Ivanov},
+pdfsubject={Mathematical proof notes}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small The lower bound $R_K\langle3,3,3\rangle\geqslant21$}\fancyhead[R]{\thepage}
+\setlength{\parindent}{1.3em}\setlength{\parskip}{3pt}
+\setlist{itemsep=3pt,topsep=5pt}
+\emergencystretch=2em
+% Keep inline formulas unbroken at binary operators and relations.
+\binoppenalty=10000
+\relpenalty=10000
+\interdisplaylinepenalty=10000
+\numberwithin{equation}{section}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{maintheorem}{Main theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\tr}{tr}\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\im}{im}\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Mat}{Mat}\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Hom}{Hom}\DeclareMathOperator{\diag}{diag}
+\newcommand{\kk}{K}\newcommand{\one}{\mathbf1}
+\newcommand{\pair}[2]{\langle #1,#2\rangle}
+\newcommand{\col}{\mathcal C}\newcommand{\test}{\mathcal T}
+\newcommand{\rankone}[2]{#1#2}
+\newcommand{\A}{\mathcal A}\newcommand{\B}{\mathcal B}\newcommand{\N}{\mathcal N}
+\newcommand{\E}{\mathcal E}\newcommand{\Sig}{\Sigma}
+\newcommand{\leqs}{\leqslant}\newcommand{\geqs}{\geqslant}
+\begin{document}
+\begin{center}
+{\LARGE A lower bound for matrix multiplication}\\[6pt]
+{\Large $R_K\langle3,3,3\rangle\geqslant21$}\\[8pt]
+{\normalsize Mathematical proof notes}
+\end{center}
+\begin{quote}\small
+These notes are an AI-generated, human-readable exposition of the Lean
+proof in \href{https://github.com/AIV5/mmrank21}{AIV5/mmrank21}, not a
+research article. They have not undergone independent mathematical or
+peer review. No claim of novelty or priority is made for the results
+or proofs. The Lean source is the authoritative formal statement and
+proof; checking it does not certify the correctness of this prose account.
+The accompanying source map links the statements to Lean modules.
+\end{quote}
+\begin{maintheorem}
+Let $K$ be an arbitrary field. If the identity
+\[
+ BA=\sum_{i=1}^{r} a_i(A)b_i(B)W_i
+\]
+holds for all matrices $A,B\in\Mat_3(K)$, where $a_i,b_i$ are linear
+forms and the matrices $W_i\in\Mat_3(K)$ are fixed, then $r\geqs21$.
+\end{maintheorem}
+
+\tableofcontents
+\newpage
+\section{Matrix notation and basic identities}
+
+All vectors in $P,Q,S$ are regarded as row vectors; matrices act on the
+right. For now we allow dimensions $p=\dim P$, $q=\dim Q$, $s=\dim S$,
+where $p,s\geqs1$ and $q\geqs2$.
+The coefficient matrices and inputs act in the following directions:
+\[
+\begin{tikzcd}[column sep=large]
+ P\arrow[r,"U_i"] & Q\arrow[r,"V_i"] & S\arrow[ll,bend left=35,"W_i"]
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=large]
+ S\arrow[r,"B"]&Q\arrow[r,"A"]&P\arrow[ll,bend left=35,"C"]
+\end{tikzcd}
+\]
+For example, $U_i$ has size $p\times q$, $A$ has size $q\times p$,
+and $BA$ has size $s\times p$. In a product $UV$, $U$ acts first and
+$V$ second. A column $\eta$ defines the linear form $x\mapsto x\eta$
+on row vectors. If $a$ is a nonzero column and $b$ a nonzero row,
+the ordinary matrix product $ab$ has rank one.
+We call the lines $Ka$ and $Kb$ its \emph{column direction} and
+\emph{row direction}, respectively.
+The \emph{column support} of a family of matrices is the span of all
+their columns; its \emph{row support} is the span of all their rows,
+equivalently the sum of their images under the right action.
+
+\begin{definition}
+A \emph{bilinear algorithm of length $r$} consists of $r$ triples of
+matrices $(U_i,V_i,W_i)$, indexed by a set $I$, satisfying
+\begin{equation}\label{eq:algorithm}
+ BA=\sum_{i\in I}\tr(U_iA)\tr(V_iB)W_i\qquad\text{for all }A,B.
+\end{equation}
+All algorithms considered here are exact: the identity holds over the
+field itself, with no limiting process. We omit this qualification below.
+The minimum length for this format is denoted by
+$R_K\langle p,q,s\rangle$.
+\end{definition}
+Every linear form on matrices is uniquely of the form
+$A\mapsto\tr(UA)$: its value on the matrix unit $E_{ab}$ is $U_{ba}$.
+Thus this definition agrees with the formulation of the main theorem.
+
+\begin{definition}
+A matrix $C:P\to S$, representing the output linear form
+$BA\mapsto\tr(CBA)$, will be called a \emph{test}.
+The \emph{maps defined by the coefficient forms} are denoted by
+\[
+ \alpha(A)_i=\tr(U_iA),\quad
+ \beta(B)_i=\tr(V_iB),\quad
+ \gamma(C)_i=\tr(W_iC).
+\]
+They take values in $K^I$. On this space we use the coordinatewise
+product $xy=(x_i y_i)_i$, the identity $\one=(1)_i$, and the pairing
+$\pair{x}{y}=\sum_i x_i y_i$. For subspaces $X,Y\subseteq K^I$,
+$XY$ denotes the \emph{linear span} of all products $xy$.
+The support of a vector $x$ is $\supp x=\{i:x_i\ne0\}$; the support
+of a subspace is the union of the supports of its vectors.
+\end{definition}
+With respect to a nondegenerate pairing, the \emph{annihilator} of a
+subspace consists of all elements of the other space that pair to zero
+with it. For matrices we use $\tr(XY)$, and for coordinate vectors
+we use $\pair{x}{y}$. In the latter case we also write $X^\perp$ and
+speak of orthogonality; no positive definiteness is assumed.
+
+\begin{lemma}\label{lem:identities}
+The maps $\alpha,\beta,\gamma$ are injective. For all matrices of the
+appropriate sizes, the following identities hold:
+\begin{align}
+ \tr(CBA)&=\sum_i\alpha(A)_i\beta(B)_i\gamma(C)_i,\label{eq:trace}\\
+ CB&=\sum_i\beta(B)_i\gamma(C)_iU_i,&
+ AC&=\sum_i\gamma(C)_i\alpha(A)_iV_i,\label{eq:cycles}\\
+ \sum_i\gamma(C)_i U_i X V_i&=\tr(X)C
+       &&(X\in\Mat_q(K)),\label{eq:sandwich}\\
+ \sum_i\tr(XV_iTU_i)W_i&=\tr(X)T
+       &&(T\in\Mat_{s,p}(K)).\label{eq:dual-sandwich}
+\end{align}
+\end{lemma}
+\begin{proof}
+The first identity follows by multiplying \eqref{eq:algorithm} by $C$
+and taking the trace. Nondegeneracy of $\tr(XY)$, checked on matrix
+units, gives both identities in \eqref{eq:cycles}.
+If, for example, $\alpha(A)=0$, then $BA=0$ for every $B$, hence $A=0$.
+Cyclic permutation gives the other two injectivity statements.
+
+To prove \eqref{eq:sandwich}, first substitute matrix units for $A,B$
+in \eqref{eq:trace}. Comparing coefficients gives
+\[
+ \sum_i(U_i)_{a b}(V_i)_{c d}\gamma(C)_i
+       =\delta_{bc}C_{ad}.
+\]
+Multiplying by $X_{bc}$ and summing yields \eqref{eq:sandwich}.
+Trace duality in $C$ gives \eqref{eq:dual-sandwich}.
+All these identities are polynomial in the coefficients and remain
+valid after a field extension.
+\end{proof}
+
+Zero summands may be deleted. Assuming an algorithm of length at most
+twenty exists, pass to an algebraic closure of $K$ and delete its zero
+summands. Unless stated otherwise, from this point until the final
+section, $K$ is algebraically closed, all $U_i,V_i,W_i$ are nonzero,
+and $r\leqs20$.
+
+\section{Coordinatewise products and conductors}
+
+\begin{definition}
+For subspaces $M,N\subseteq K^I$, their \emph{conductor} is
+\[
+ (N:M)=\{d\in K^I:md\in N\text{ for every }m\in M\}.
+\]
+This is a subspace of $K^I$; the colon does not denote a quotient space.
+The \emph{multiplicative stabilizer} of $X$ is the algebra
+$(X:X)=\{a:aX\subseteq X\}$. Its elements need not be invertible.
+\end{definition}
+
+\begin{lemma}\label{lem:nz-growth}
+Let $X,Y\subseteq K^I$ be nonzero subspaces such that $xy=0$ with
+$x\in X$, $y\in Y$ implies $x=0$ or $y=0$. Then
+\[
+ \dim XY\geqs\dim X+\dim Y-1.
+\]
+\end{lemma}
+\begin{proof}
+Induct on $\dim X$. If $\dim X=1$, multiplication by any nonzero
+$x\in X$ is injective on $Y$. Otherwise choose a coordinate $i$
+on which some product is nonzero. The spaces
+$X_0=\{x\in X:x_i=0\}$ and $(XY)_0=\{v\in XY:v_i=0\}$
+have codimension one in $X$ and $XY$, respectively, and
+$X_0Y\subseteq(XY)_0$. The induction hypothesis applied to $X_0,Y$
+gives the required bound.
+\end{proof}
+
+\begin{definition}
+For $G\subseteq I$, set
+\[
+ X[G]=\{x\in X:x_i=0\text{ if }i\notin G\},\qquad
+ X|_G=\{(x_i)_{i\in G}:x\in X\}.
+\]
+These are the \emph{coordinate section} and the \emph{restriction} of
+the space, respectively. Their dimensions need not be equal.
+\end{definition}
+
+\begin{lemma}\label{lem:two-conductors}
+Let $M=\Span(\one,x,y)$ and $N,B\subseteq K^I$, with $MB\perp N$.
+Then
+\[
+ \dim(N:M)+\dim(B:M)\geqs3\dim N+3\dim B-2r.
+\]
+\end{lemma}
+\begin{proof}
+For any $L\subseteq K^I$, consider
+\[
+ \Phi_L:L^3\longrightarrow K^I\oplus K^I,\qquad
+ (l_0,l_1,l_2)\longmapsto(l_1-xl_0,l_2-yl_0).
+\]
+Its kernel consists of the triples $(l_0,xl_0,yl_0)$ with $l_0\in(L:M)$.
+Thus
+\[
+ \dim\im\Phi_L=3\dim L-\dim(L:M).
+\]
+The form on $K^I\oplus K^I$ defined by
+\[
+ \omega((a,b),(c,d))=\pair{a}{d}-\pair{b}{c}
+\]
+is nondegenerate and alternating, meaning $\omega(v,v)=0$, including
+in characteristic two. The images of $\Phi_N$ and $\Phi_B$ are
+orthogonal: on expanding, the terms with factors $1,x,y$ vanish by
+hypothesis, while the terms with $xy$ cancel. The dimensions of
+orthogonal subspaces sum to at most $2r$. Substitute the dimensions
+computed above.
+\end{proof}
+
+\subsection{Connectedness and coordinate components}
+
+\begin{definition}
+A finite nonempty family of nonzero vectors $(v_i)_{i\in G}$ is
+\emph{connected} if every partition $G=G_1\sqcup G_2$ into two nonempty
+parts satisfies
+\[
+ \Span\{v_i:i\in G_1\}\cap\Span\{v_i:i\in G_2\}\ne0.
+\]
+By splitting disconnected families, we obtain the unique finest
+partition for which the span of the family is the direct sum of the
+spans of the parts. These parts are called its connected components.
+\end{definition}
+Uniqueness also follows from a description by minimal linear
+dependences: all indices in one such dependence must belong to the
+same part; the transitive closure of these relations gives the components.
+
+\begin{lemma}\label{lem:connected}
+Suppose that the nonzero rank-one matrices $a_i b_i$ form a connected
+family. Then
+\[
+ \dim\Span\{a_i\}+\dim\Span\{b_i\}
+       \leqs\dim\Span\{a_i b_i\}+1.
+\]
+\end{lemma}
+\begin{proof}
+Start with one matrix. Suppose the inequality has been proved for the
+part $J$ already chosen. If $J\ne G$, connectedness allows us to choose
+a minimal nonempty part $H\subseteq G\setminus J$ whose span intersects
+the span of $J$ nontrivially. The matrices indexed by $H$ are independent;
+the intersection is one-dimensional and spanned by
+$T=\sum_{i\in H}c_i a_i b_i\ne0$, where every $c_i\ne0$.
+Otherwise one could remove an index from $H$.
+
+Write $A_0,B_0$ for the previous spans of the factors and $A_1,B_1$
+for the enlarged spans. The columns of $T$ lie in $A_0$, and its rows
+lie in $B_0$. This implies
+\[
+ (\dim A_1-\dim A_0)+(\dim B_1-\dim B_0)\leqs |H|-1.
+\]
+Here is a direct linear algebra verification of this last step.
+Factor $T=XY$, with columns $c_i a_i$ in $X$ and rows $b_i$ in $Y$.
+Projecting the columns modulo $A_0$ gives $\bar X Y=0$; projecting
+the rows modulo $B_0$ gives $X\bar Y=0$.
+If the two dimension increments summed to $|H|$, we would have
+$\im\bar Y=\ker\bar X$; then $X\bar Y=0$ would say that $X$
+annihilates $\ker\bar X$. Since $\bar X Y=0$, this would imply
+$XY=0$, contradicting $T\ne0$. The usual rank inequality for a product
+first bounds the sum of the increments by $|H|$, leaving the bound
+$|H|-1$. Adjoining $H$ increases the span of the matrices by exactly
+$|H|-1$. The inequality is preserved, and finite induction completes
+the proof.
+\end{proof}
+
+\begin{definition}
+The \emph{coordinate components} of a subspace $X\subseteq K^I$ are
+the connected components of its nonzero coordinate forms $x\mapsto x_i$.
+Zero coordinate forms are omitted. Equivalently, these are the minimal
+nonempty blocks $G$ for which $X=\bigoplus_G X[G]$.
+We call these components \emph{active}: the space $X$ is not identically
+zero on any coordinate of such a component.
+\end{definition}
+
+\begin{lemma}\label{lem:component-cost}
+Let $\one\in M$, $D=(N:M)$, and $E=MD$. For each active coordinate
+component $G$ of $E$, we have
+\[
+ \dim(M|_G)+\dim D[G]\leqs\dim E[G]+1.                 \tag{*}
+\]
+If $\dim E=\dim D+1$, there is such a component with $\dim(M|_G)=2$.
+If $E=D$, then $D$ is spanned by common eigenvectors of all the
+operators $w\mapsto mw$, $m\in M$.
+\end{lemma}
+\begin{proof}
+Coordinate projections preserving $E$ also preserve $D$, since
+\[
+ m\pi_G(d)=\pi_G(md)\in E\subseteq N.
+\]
+Hence
+$E[G]=(M|_G)D[G]$. Choose bases in $M|_G$ and $D[G]$.
+The product coordinates are given by the bilinear forms
+$(m,d)\mapsto m_i d_i$, whose matrices have rank one.
+The linear relations among these matrices are exactly the relations
+among the coordinate forms on $E[G]$, since the products span $E[G]$.
+Thus the matrix family is connected, and its span has dimension
+$\dim E[G]$. The first and second factors span spaces of dimensions
+$\dim(M|_G)$ and $\dim D[G]$: they are the full sets of coordinate
+forms on the corresponding spaces. Lemma~\ref{lem:connected} gives (*).
+
+The sum of the dimension increments over the components is the total
+increment. When the total increment is one, (*) gives
+$\dim(M|_G)\leqs2$ for every component. If all these dimensions were one,
+each $m$ would be constant on each block, because $\one\in M$.
+Then $ME=E$, so $E\subseteq(N:M)=D$, a contradiction.
+
+When $MD=D$, we have $M\subseteq(D:D)$: every multiplier belongs to
+the multiplicative stabilizer of $D$.
+The restrictions to $D$ of the diagonal operators $w\mapsto mw$ are
+simultaneously diagonalizable. This can be seen directly: partition
+$I$ according to equality of all the values $m_i$. By interpolation,
+the projection onto each class is a polynomial in finitely many of
+these diagonal operators, so it preserves $D$. On each resulting
+coordinate section all the operators are scalar. Every nonzero vector
+in that section is therefore a common eigenvector.
+\end{proof}
+
+\section{Normalizing the algorithm and dimension bounds}
+
+\subsection{Choosing a hyperplane}
+For a matrix subspace $H\subseteq\Mat_{p,q}(K)$, set
+\[
+ \col(H)=\{a\in K^{p\times1}:ab\in H
+                 \text{ for all }b\in K^{1\times q}\}.
+\]
+This is a space of columns, not a kernel of the matrices in $H$.
+
+\begin{lemma}\label{lem:generic}
+Suppose an algorithm of format $\langle p,q,s\rangle$ and arbitrary
+length is given over an infinite field, with all $U_i,V_i,W_i$ nonzero,
+where $p,s\geqs1$ and $q\geqs2$. Then one can choose a nonzero column
+$\eta\in K^{q\times1}$, the hyperplane
+$F=\{x:x\eta=0\}\subset Q$, and nonzero rescalings of the coefficients
+such that the spaces
+\[
+ M=\{\alpha(\eta u):u\in P\},\quad
+ B_F=\{\beta(B):\im B\subseteq F\},\quad N=\im\gamma
+\]
+have the following properties:
+\begin{enumerate}
+\item $\one\in M$, and $M,B_F,N$ have full support;
+\item if $a\in M$, $b\in\im\beta$, and $ab=0$, then $a=0$ or $b=0$;
+\item for every $G\subseteq I$ and $i\in G$, if
+$U_i\eta\in\col(\Span\{U_j:j\in G\})$, then every column of $U_i$
+belongs to this same subspace.
+\end{enumerate}
+Here full support means that no coordinate vanishes identically on
+the entire space.
+\end{lemma}
+\begin{proof}
+Property 3 is obtained by excluding finitely many proper linear
+subspaces. For fixed $G,i$, take the inverse image of
+$\col(\Span U_G)$ under $\eta\mapsto U_i\eta$. If this inverse image
+is proper, choose $\eta$ outside it.
+
+Also exclude $\ker U_i$ and those $\eta$ for which
+$F\subseteq\ker V_i$. The latter condition can occur only when
+$\rk V_i=1$ and excludes one line of possible $\eta$.
+This ensures full support for $M,B_F$. Full support for $N$ follows
+from $W_i\ne0$.
+
+For every $J$ with $\Span V_J\ne\Mat_{q,s}(K)$, choose a nonzero
+matrix $B_J$ trace-orthogonal to all $V_i$, $i\in J$, and require
+in addition that $B_J\eta\ne0$.
+Let $u\ne0$ and $J=\supp\alpha(\eta u)$. If $\Span V_J$ were proper,
+the algorithm identity would give $B_J\eta u=0$, a contradiction.
+Thus $V_J$ spans the whole matrix space. Now if
+$\alpha(\eta u)\beta(B)=0$, then $\beta(B)$ vanishes on $J$, so $B=0$.
+This proves property 2.
+
+Over an infinite field, finitely many proper linear subspaces cannot
+cover the whole space: a product of nonzero linear equations vanishing
+on them is a nonzero polynomial. Thus a suitable $\eta$ exists.
+Next choose $u_0$ with $c_i=\tr(U_i\eta u_0)\ne0$ for every $i$,
+and replace $U_i$ by $c_i^{-1}U_i$ and $W_i$ by $c_iW_i$.
+The algorithm and all ranks are preserved, while
+$\alpha(\eta u_0)=\one$. All the stated properties survive these
+rescalings.
+\end{proof}
+
+An algorithm equipped with $\eta,u_0$ satisfying this lemma will be
+called \emph{normalized}. Write $m(u)=\alpha(\eta u)$ and set
+\[
+ D=(N:M),\qquad E=MD,\qquad Z=(B_F:M),\qquad
+ d=\dim D,\quad e=\dim E,\quad z=\dim Z.
+\]
+We call $g=e-d$ the \emph{dimension increment}.
+It is nonnegative, since $\one\in M$ implies $D\subseteq E$.
+For $p=q=s=3$, we have
+\[
+ \dim M=3,\qquad\dim B_F=6,\qquad\dim N=9,\qquad MB_F\perp N.
+\]
+The last orthogonality follows from $B\eta=0$ and \eqref{eq:trace}.
+Lemma~\ref{lem:two-conductors} immediately gives
+\begin{equation}\label{eq:dz}
+ d+z\geqs45-2r.
+\end{equation}
+
+\subsection{Matrix representatives of the conductors}
+
+\begin{definition}
+For $d_0\in D$, $z_0\in Z$, and $u\in P$, define the matrices
+$C_{d_0}(u)$ and $B_{z_0}(u)$ uniquely by
+\[
+ \gamma(C_{d_0}(u))=m(u)d_0,\qquad
+ \beta(B_{z_0}(u))=m(u)z_0,\qquad \im B_{z_0}(u)\subseteq F.
+\]
+Existence follows from the definition of the conductor, and uniqueness
+from injectivity of the coefficient maps. The dependence on each
+argument is linear.
+\end{definition}
+\[
+\begin{tikzcd}[column sep=huge,row sep=large]
+ P\arrow[r,"u\mapsto C_{d_0}(u)"]\arrow[d,"m"']&
+ \Mat_{p,s}(K)\arrow[d,"\gamma"]\\
+ M\arrow[r,"a\mapsto ad_0"']&N
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=huge,row sep=large]
+ P\arrow[r,"u\mapsto B_{z_0}(u)"]\arrow[d,"m"']&
+ \{B:\im B\subseteq F\}\arrow[d,"\beta"]\\
+ M\arrow[r,"a\mapsto az_0"']&B_F
+\end{tikzcd}
+\]
+
+\begin{lemma}\label{lem:reciprocity}
+For all $u,v\in P$, we have
+\begin{align}
+ vC_{d_0}(u)&=uC_{d_0}(v),\label{eq:reciprocity}\\
+ C_{d_0}(u)B_{z_0}(v)&=C_{d_0}(v)B_{z_0}(u).\label{eq:compatibility}
+\end{align}
+Let $\E=\gamma^{-1}(E)$. For every $C\in\E$,
+\begin{equation}\label{eq:symmetrizer}
+ uCB_{z_0}(v)=vCB_{z_0}(u).
+\end{equation}
+Moreover, $B_{z_0}(u)=0$ implies $z_0=0$ or $u=0$.
+\end{lemma}
+\begin{proof}
+Substitute $A=\eta v$ and $\gamma(C)=m(u)d_0$ in \eqref{eq:trace}.
+The right-hand side is symmetric in $u,v$; varying $B\eta$ gives
+\eqref{eq:reciprocity}. Similarly, the product $m(u)m(v)d_0z_0$
+and trace duality give \eqref{eq:compatibility}.
+For $C=C_{d_0}(w)$, we obtain
+\[
+ uC_{d_0}(w)B_{z_0}(v)
+ =wC_{d_0}(u)B_{z_0}(v)
+ =wC_{d_0}(v)B_{z_0}(u)
+ =vC_{d_0}(w)B_{z_0}(u).
+\]
+These $C$ span $\E$, proving \eqref{eq:symmetrizer}.
+The last assertion follows from property 2 of Lemma~\ref{lem:generic}.
+\end{proof}
+
+\begin{lemma}\label{lem:physical-bound}
+For a normalized algorithm of format $\langle p,q,s\rangle$ and
+arbitrary length $r$,
+\[
+ ps+(q-1)e\leqs r.
+\]
+In particular, if $p=q=s=3$ and $r\leqs20$, then $e\leqs5$.
+\end{lemma}
+\begin{proof}
+Consider the $r$ linear maps $Q_i:T\mapsto V_iTU_i\eta$ from
+$\Mat_{s,p}(K)$ to the column space $K^q$.
+Identities \eqref{eq:sandwich} and \eqref{eq:reciprocity} imply
+\begin{align*}
+ \sum_i\gamma(C)_iQ_i(T)&=\tr(TC)\eta,\\
+ \sum_i(d_0)_i\alpha(\theta u)_iQ_i(T)
+       &=\tr(TC_{d_0}(u))\theta.
+\end{align*}
+For the second identity it suffices to take $T=av$ of rank one.
+By \eqref{eq:trace}, its left-hand side is
+$(vC_{d_0}(u)a)\theta$, as required; these matrices span the whole space.
+Thus the span of the $Q_i$ contains every map $T\mapsto\tr(TC)\eta$
+and every map $T\mapsto\tr(TC)\theta$ with $C\in\E$, $\theta\in K^q$.
+These two spaces have dimensions $ps$ and $qe$, and their intersection
+has dimension $e$. Their sum therefore has dimension
+$ps+(q-1)e\leqs r$.
+\end{proof}
+
+\Needspace{10\baselineskip}
+\begin{cor}\label{cor:two-two-n}
+For every field $K$ and integer $n\geqs1$,
+\[
+ R_K\langle2,2,n\rangle\geqs\left\lceil\frac{7n}{2}\right\rceil.
+\]
+\end{cor}
+\begin{proof}
+An algorithm over $K$ remains valid over an algebraic closure, and
+deleting zero summands does not increase its length. It therefore
+suffices to bound the length $r$ of an algorithm with no zero summands
+over an infinite field. The restriction $r\leqs20$ is not assumed here.
+
+Apply Lemma~\ref{lem:generic} with $p=q=2$ and $s=n$.
+Injectivity of the coefficient maps gives
+\[
+ \dim M=2,\qquad \dim N=2n,\qquad \dim B_F=n.
+\]
+Since $\one\in M$, choose $x$ so that $M=\Span(\one,x)$.
+The relation $MB_F\perp N$ and commutativity of the coordinatewise
+product imply $MN\perp B_F$. Nondegeneracy of the pairing gives
+\[
+ \dim MN\leqs r-n.
+\]
+Consider the surjective linear map
+\[
+ \Phi:N\oplus N\longrightarrow MN=N+xN,\qquad
+ (u,v)\longmapsto xu-v.
+\]
+Its kernel consists of the pairs $(u,xu)$ with $u\in N$ and $xu\in N$.
+This is exactly the condition $u\in D=(N:M)$. By rank-nullity,
+\[
+ d=\dim D=4n-\dim MN\geqs5n-r.
+\]
+Since $\one\in M$, we have $D\subseteq MD$, hence $e\geqs d$.
+Lemma~\ref{lem:physical-bound} now gives
+\[
+ r\geqs2n+e\geqs2n+d\geqs7n-r.
+\]
+Thus $2r\geqs7n$, and the integrality of $r$ completes the proof.
+\end{proof}
+
+\subsection{Joint symmetrizers}
+
+\begin{definition}
+Suppose $B_z(u):S\to F$ depends bilinearly on $z\in Z$ and $u\in P$.
+Its \emph{space of joint symmetrizers} is
+\[
+ \Sig(B)=\{C:P\to S:\ uCB_z(v)=vCB_z(u)
+                          \text{ for all }u,v,z\}.
+\]
+In chosen bases, this is the solution space of linear conditions
+requiring certain matrix products to be symmetric.
+Lemma~\ref{lem:reciprocity} gives $\E\subseteq\Sig(B)$.
+\end{definition}
+
+\begin{lemma}\label{lem:rank-one-space}
+If every matrix in a linear space has rank at most one, then the space
+has either a common one-dimensional column support or a common
+one-dimensional row support.
+\end{lemma}
+\begin{proof}
+Choose a nonzero matrix $ab$. For another nonzero matrix $cd$, the sum
+$ab+cd$ has rank two if both $a,c$ and $b,d$ are independent.
+Thus every element has its first factor proportional to $a$ or its
+second factor proportional to $b$. If both types occur with
+nonproportional free factors, their sum again has rank two.
+Hence one factor is common to the entire space.
+\end{proof}
+
+\begin{lemma}\label{lem:sym-small}
+Let $\dim P=\dim S=3$ and $\dim F=2$, and suppose that $B_z(u)=0$
+implies $z=0$ or $u=0$. If $\dim Z\geqs3$ and
+$\dim\Span\{B_z(u):z,u\}\geqs5$, then $\dim\Sig(B)\leqs1$.
+\end{lemma}
+\begin{proof}
+Let $C\in\Sig(B)$ be singular, and choose $0\ne u\in\ker C$.
+Symmetry implies that all $B_z(u)$ annihilate $\im C$.
+The map $z\mapsto B_z(u)$ is injective, so
+\begin{equation}\label{eq:sym-capacity}
+ \dim Z\leqs(3-\rk C)\dim F.
+\end{equation}
+Consequently, a singular symmetrizer has rank at most one.
+
+Suppose there are an invertible symmetrizer $C_0$ and a nonzero
+rank-one symmetrizer $C$. Choose a row $v$ with $vC\ne0$ and set
+$x=(vC)C_0^{-1}$. For $u\in\ker C$, the two symmetry identities give
+\[
+ uC_0B_z(x)=xC_0B_z(u)=vCB_z(u)=uCB_z(v)=0.
+\]
+Thus every $B_z(x)$ annihilates the two-dimensional space $(\ker C)C_0$.
+Injectivity in $z$ gives $\dim Z\leqs2$, a contradiction.
+Therefore, if $C_0$ exists, every nonzero element of $\Sig(B)$ is
+invertible. There cannot be two independent such elements: the matrix
+$C_0^{-1}C_1$ has an eigenvalue, making $C_1-\lambda C_0$ a nonzero
+singular element.
+
+It remains to consider the case where all symmetrizers have rank at
+most one. Suppose their space $H$ has dimension at least two.
+Lemma~\ref{lem:rank-one-space} gives two possibilities.
+If all $C\in H$ have image in a common line $L\subset S$, write two
+independent elements as $a_1s,a_2s$, with $Ks=L$.
+Symmetry says that $u\mapsto sB_z(u)$ is proportional to each of the
+independent forms $u\mapsto ua_1$ and $u\mapsto ua_2$.
+It must therefore vanish: $LB_z(u)=0$ for all $z,u$.
+The span of all $B_z(u)$ then has dimension at most
+$\dim\Hom(S/L,F)=4$.
+If instead all $C\in H$ have a common kernel hyperplane $H_0\subset P$,
+then for $x\notin H_0$ the map $C\mapsto xC$ is injective.
+Its image has dimension $\dim H\geqs2$. For a nonzero $u\in H_0$,
+symmetry forces all $B_z(u)$ to annihilate this image, again giving
+$\dim Z\leqs(3-\dim H)2\leqs2$. Both possibilities are impossible.
+\end{proof}
+
+\begin{lemma}\label{lem:five-sym}
+Under the assumptions of the previous lemma, except for the bounds on
+$\dim Z$ and the span of $B$, suppose that $Z\ne0$ and
+$\dim\Sig(B)\geqs5$. Then there are an invertible matrix $L$ and an
+injective linear map $f:Z\to F$ such that
+\begin{equation}\label{eq:factor}
+ B_z(u)= (Lu^{\mathsf t}) f(z).
+\end{equation}
+In other words, its value on a row $s$ is $(sLu^{\mathsf t})f(z)$.
+\end{lemma}
+\begin{proof}
+First establish an auxiliary fact. If independent matrices
+$A,B\in\Mat_3(K)$ satisfy $Ak=Bk=0\Rightarrow k=0$ for columns $k$,
+then the space of matrices $T$ for which both $TA$ and $TB$ are
+symmetric has dimension at most four. The dual equations are
+represented by the map
+\[
+ (k,l)\longmapsto A[k]_\times+B[l]_\times,\qquad
+ [k]_\times=\begin{pmatrix}0&-k_3&k_2\\k_3&0&-k_1\\-k_2&k_1&0\end{pmatrix}.
+\]
+Here $k,l$ are columns, and we write $k\times l=[k]_\times l$ for this
+formula over $K$. If the image is zero, multiplication on the right by
+$k$ and $l$ shows that $A(k\times l)=B(k\times l)=0$.
+Hence $k,l$ are dependent. Regard the kernel as a space of
+$3\times2$ matrices $(k\ l)$: every matrix in it has rank at most one.
+If its dimension is at least two, Lemma~\ref{lem:rank-one-space} gives
+a common first or second factor. In the first case, the kernel contains
+$(k,0),(0,k)$ with $k\ne0$, so $A[k]_\times=B[k]_\times=0$, contrary
+to the trivial common kernel. In the second case it consists of
+$(ak,bk)$ with fixed $(a,b)\ne(0,0)$. The nonzero matrix $aA+bB$
+can annihilate $[k]_\times$ only for $k$ on a single line: any nonzero
+row of that matrix must be proportional to $k$.
+Thus the kernel has dimension at most one, and the map has rank at
+least five. The required space of symmetrizers has codimension at
+least five. This argument uses the zero diagonal of $[k]_\times$
+and does not divide by two.
+
+Choose $z\ne0$ and represent the two output coordinates of the
+bilinear map $(u,s)\mapsto sB_z(u)$ by $3\times3$ matrices $A,B$.
+The expression is $(sAu^{\mathsf t},sBu^{\mathsf t})$.
+Since $u\mapsto B_z(u)$ is injective, $Ak=Bk=0$ implies $k=0$.
+The existence of five symmetrizers and the auxiliary fact force $A,B$
+to be proportional. Their common nonzero matrix factor $L$ is
+invertible. Compare it with each coordinate matrix for the other
+values of $z$: the common kernel is again trivial, and the same fact
+forces proportionality to $L$. The proportionality coefficients
+define a linear map $f$. The absence of nonzero pairs with zero
+product makes $f$ injective.
+\end{proof}
+
+\begin{lemma}\label{lem:injective-product}
+If the family representing the second conductor has form
+\eqref{eq:factor}, then $\dim NZ=9z$ and $r\geqs9z+3$.
+The same conclusion holds if there are row bases $(u_j)$ of $P$ and
+$(s_j)$ of $S$, and injective maps $f_j:Z\to F$, such that
+\begin{equation}\label{eq:diagonal-factor}
+ B_z(u_j)=s_j^*f_j(z).
+\end{equation}
+Here $s_j^*$ is the corresponding dual-basis column:
+$s_k s_j^*=\delta_{kj}$.
+\end{lemma}
+\begin{proof}
+Let $z_1,\ldots,z_z$ be a basis of $Z$, and suppose
+$\sum_a\gamma(C_a)z_a=0$. Multiply by $m(u)$, use the definition of
+$B_{z_a}(u)$, and then apply \eqref{eq:cycles}. This gives
+\[
+ \sum_a C_a B_{z_a}(u)=0\qquad\text{for every }u.
+\]
+In case \eqref{eq:factor}, this is $\sum_a C_a Lu^{\mathsf t}f(z_a)=0$.
+Independence of the rows $f(z_a)$ gives $C_aLu^{\mathsf t}=0$ for
+all $a,u$, hence $C_a=0$. In case \eqref{eq:diagonal-factor}, likewise
+$C_a s_j^*=0$ for all $a,j$, again giving $C_a=0$.
+Thus the map $(C_a)_a\mapsto\sum_a\gamma(C_a)z_a$ is injective.
+Its image is $NZ$, which consequently has dimension $9z$.
+Since $Z\subseteq B_F$ and $MB_F\perp N$, we have $M\perp NZ$.
+Therefore $r\geqs\dim M+\dim NZ=3+9z$.
+\end{proof}
+
+\begin{prop}\label{prop:critical}
+For a normalized algorithm of format $3\times3\times3$ and length
+$r\leqs20$, we have
+\[
+ 3\leqs d\leqs e\leqs5,\qquad z\leqs2,\qquad d+z\geqs45-2r,
+ \qquad e=5\Longrightarrow d\geqs4, z\leqs1.
+\]
+In particular, $r\geqs20$; when $r=20$, the increment $g=e-d$ is zero
+or one.
+\end{prop}
+\begin{proof}
+Lemma~\ref{lem:nz-growth}, applied to $M,Z$, gives
+$\dim MZ\geqs z+2$ if $Z\ne0$. Since $MZ\subseteq B_F$, we get
+$z\leqs4$. Together with \eqref{eq:dz}, this gives $d\geqs1$.
+By Lemma~\ref{lem:physical-bound}, $e\leqs5$.
+
+If $z\geqs3$, the span of the matrices $B_z(u)$ has dimension
+$\dim MZ\geqs5$. Lemma~\ref{lem:sym-small} gives $e\leqs1$, so
+$D=E$ is one-dimensional. Its nonzero vector $w=\gamma(C)$ is a common
+eigenvector for multiplication by $M$. Choose an active coordinate $i$;
+the space $M_0=\{m\in M:m_i=0\}$ has dimension two.
+For $m(u)\in M_0$, we have $C_w(u)=0$.
+Using \eqref{eq:compatibility} with $u_0$ satisfying $m(u_0)=\one$
+gives $CB_z(u)=0$. Thus the matrix representatives of $M_0Z$ lie in
+$\Hom(S/\im C,F)$, whose dimension is at most four.
+Lemma~\ref{lem:nz-growth} gives $z+1\leqs4$, hence $z\leqs3$.
+Now $d+z\leqs4$, contradicting \eqref{eq:dz}. Therefore $z\leqs2$
+and $d\geqs3$.
+
+If $e=5$ and $z=2$, Lemmas~\ref{lem:five-sym} and
+\ref{lem:injective-product} give $r\geqs21$, a contradiction.
+Hence $z\leqs1$ and $d\geqs4$ in this case.
+If $r\leqs19$, then \eqref{eq:dz} would give $d+z\geqs7$;
+this is impossible when $e\leqs4$, while $e=5$ already gives
+$d+z\leqs6$. Thus $r=20$. Every remaining pair $(d,e)$ has difference
+zero or one.
+\end{proof}
+
+\section{Supports of tests and atomic tests}
+
+\subsection{Two bounds for tests with prescribed support}
+
+\begin{definition}
+For $G\subseteq I$, set
+\[
+ \test_G=\{C\in\Mat_{p,s}(K):\supp\gamma(C)\subseteq G\},\quad
+ \delta_G=\dim\test_G,\quad
+ H_G=\sum_{C\in\test_G}\im C,\quad h_G=\dim H_G.
+\]
+Thus $\test_G$ consists of the tests supported in $G$, and $H_G$ is
+their common row support.
+\end{definition}
+
+\begin{lemma}\label{lem:budgets}
+Suppose the columns of all $U_i$, $i\in G$, lie in a fixed
+$k$-dimensional space $H\subset K^{p\times1}$, with $k<p$, and let
+$m=|G|$. Then the columns of every $C\in\test_G$ also lie in $H$, and
+\begin{align}
+ \delta_G&\leqs k h_G,\label{eq:capacity}\\
+ \delta_G+(q-1)h_G&\leqs m,\label{eq:internal}\\
+ m+qs+ks&\leqs r+\delta_G.\label{eq:external}
+\end{align}
+Inequality \eqref{eq:internal} requires the normalization
+$\alpha(\eta u_0)=\one$. In addition,
+\begin{equation}\label{eq:mass}
+ \Span\{V_i:i\in G\}\supseteq\{V: \im V\subseteq H_G\},
+ \qquad \dim\Span V_G\geqs qh_G.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For $C\in\test_G$, identities \eqref{eq:cycles} give
+$CB\in\Span U_G$ and $AC\in\Span V_G$ for all $A,B$.
+The first inclusion puts the columns of $C$ in $H$; the second gives
+\eqref{eq:mass}. Inequality \eqref{eq:capacity} follows from the
+dimension of the space of matrices with columns in $H$ and rows in $H_G$.
+
+Let $f:K^G\to\Mat_{q,s}(K)$ be given by $f(c)=\sum_{i\in G}c_iV_i$.
+The injective map $\gamma:\test_G\to K^G$ satisfies
+$f\gamma(C)=\eta u_0C$, so $\dim f(\gamma\test_G)\leqs h_G$.
+Combining
+\[
+ \dim\im f+\dim\gamma\test_G\leqs m+\dim f(\gamma\test_G)
+\]
+with \eqref{eq:mass} gives \eqref{eq:internal}.
+
+For \eqref{eq:external}, restrict the first input by $AH=0$.
+All summands indexed by $G$ disappear. On the space of tests with
+columns in $H$, restricting $\gamma$ to $I\setminus G$ has kernel
+$\test_G$, hence rank $ks-\delta_G$. Choose that many independent
+coordinate forms. By adding to any test a matrix with columns in $H$,
+we can make these forms zero; the product in \eqref{eq:trace} is
+unchanged because $AH=0$. We obtain an algorithm for rectangular
+matrix multiplication with inner dimension $p-k>0$ and at most
+$r-m-ks+\delta_G$ summands. Its coefficient map on the space of
+$q\times s$ matrices is injective, so its length is at least $qs$.
+This is \eqref{eq:external}.
+\end{proof}
+
+\begin{lemma}\label{lem:rect15}
+Bilinear matrix multiplication of format $\langle3,2,3\rangle$ requires
+at least fifteen summands.
+\end{lemma}
+\begin{proof}
+Apply the normalization and conductor construction with $p=s=3$,
+$q=2$. Then $\dim M=3$, $\dim B_F=3$, and $\dim N=9$.
+If $Z\ne0$, Lemma~\ref{lem:nz-growth} gives $z\leqs1$; if $Z=0$,
+the same bound is immediate. Consequently,
+$d\geqs36-2r-z\geqs35-2r$.
+Lemma~\ref{lem:physical-bound} gives $9+e\leqs r$, and $d\leqs e$.
+Thus $44\leqs3r$, hence $r\geqs15$.
+Passing to an infinite extension field and deleting zero summands do
+not increase the length.
+\end{proof}
+
+\begin{lemma}\label{lem:point-capacity}
+In an algorithm of format $\langle3,3,3\rangle$ and length twenty,
+at most three matrices $U_i$ have their columns in any fixed line.
+If there are exactly three such indices, then $\delta_G=1$, and their
+$U_i$ span the full three-dimensional space of matrices with columns
+in that line. The same holds for rows and for cyclic permutations
+of $U,V,W$.
+\end{lemma}
+\begin{proof}
+Here $k=1$. Tests supported in $G$ have a fixed first factor, so
+$\delta_G=h_G$, and \eqref{eq:mass} gives $3\delta_G\leqs m$.
+In the proof of \eqref{eq:external}, deleting $G$ and a further
+$3-\delta_G$ terms leaves format $\langle3,2,3\rangle$.
+Lemma~\ref{lem:rect15} gives
+\[
+ 15\leqs20-m-3+\delta_G,\qquad m\leqs\delta_G+2.
+\]
+Together these bounds yield $\delta_G\leqs1$ and $m\leqs3$.
+When $m=3$, we get $\delta_G=1$.
+For nonzero $C=as\in\test_G$, the matrices $CB$, with $B$ arbitrary,
+span the whole space $\{ab:b\in K^{1\times3}\}$ and lie in the span
+of $U_G$ by \eqref{eq:cycles}. This proves the assertion about the span.
+Transposition and cyclic permutation in \eqref{eq:trace} give the
+other versions.
+\end{proof}
+
+\begin{lemma}\label{lem:partial}
+Suppose a linear space of output forms of dimension $\delta\geqs3$
+is computed from the product of $2\times n$ and $n\times2$ matrices.
+Then the number of summands is at least $3n+\delta-3$.
+\end{lemma}
+\begin{proof}
+First let $\delta=3$. A three-dimensional space of $2\times2$ test
+matrices is the trace annihilator of one nonzero matrix. Independent
+changes of the two bases reduce this matrix to one of two rank cases.
+In the rank-one case the three computed forms are
+$x u^{\mathsf t},x v^{\mathsf t},y u^{\mathsf t}$, where $x,y,u,v\in K^n$.
+The first-input forms evaluated on $(0,y)$ separate all $y$; otherwise
+the third output form would vanish identically for some nonzero $y$.
+Choose $n$ independent such forms and make them zero by a linear
+substitution $y=Lx$. At most $r-n$ terms remain, computing the first
+two outputs. They separate all $2n$ coordinates of $(u,v)$, so
+$r-n\geqs2n$.
+
+In the rank-two case the outputs are
+$x u^{\mathsf t}-y v^{\mathsf t},x v^{\mathsf t},y u^{\mathsf t}$.
+Their matrices on $K^n\oplus K^n$ are
+\[
+ S_0=\begin{pmatrix}I&0\\0&-I\end{pmatrix},\quad
+ S_1=\begin{pmatrix}0&I\\0&0\end{pmatrix},\quad
+ S_2=\begin{pmatrix}0&0\\I&0\end{pmatrix}.
+\]
+The block map
+\[
+ (v_0,v_1,v_2)\longmapsto
+ (S_1v_2-S_2v_1,\ S_2v_0-S_0v_2,\ S_0v_1-S_1v_0)
+\]
+has trivial kernel: use the last two equations to express $v_1,v_2$
+in terms of $v_0$, and the first becomes
+$(S_1S_0^{-1}S_2-S_2S_0^{-1}S_1)v_0=0$; the operator in parentheses
+is $-I$. The rank is therefore $6n$.
+A single bilinear summand contributes the same rank-one matrix to
+all three $S_a$, with three scalar coefficients. Its contribution
+to the block map thus has rank at most that of the corresponding
+alternating $3\times3$ matrix, which is at most two.
+Consequently, $2r\geqs6n$. The sign causes no problem in characteristic two.
+
+If $\delta>3$, the coefficient forms embed the test space injectively
+into $K^r$. Choose $\delta-3$ independent coordinate forms and take
+their common kernel, of dimension three. On it, $\delta-3$ summands
+disappear, and the bound just proved gives
+$r-(\delta-3)\geqs3n$.
+\end{proof}
+
+\begin{lemma}\label{lem:plane}
+In an algorithm of length twenty, at most seven $U_i$ have their
+columns in any fixed plane $H\subset K^3$. For every set of such
+indices, $\delta_G\leqs2$.
+\end{lemma}
+\begin{proof}
+First normalize the algorithm using Lemma~\ref{lem:generic}; nonzero
+rescalings preserve the supports and dimensions in question.
+Lemma~\ref{lem:budgets} with $k=2$ gives
+$m\leqs\delta_G+5$, $\delta_G+2h_G\leqs m$, and
+$\delta_G\leqs2h_G$. Hence $h_G\leqs2$.
+If $\delta_G\geqs3$, then $h_G=2$. The tests in $\test_G$ restrict
+the product of $2\times3$ and $3\times2$ matrices and compute
+$\delta_G$ independent output forms. Lemma~\ref{lem:partial} gives
+$m\geqs\delta_G+6$, a contradiction. Thus $\delta_G\leqs2$ and $m\leqs7$.
+\end{proof}
+
+\subsection{Atomic tests}
+
+\begin{definition}
+An \emph{atomic test} is a nonzero rank-one matrix $C=as$, where $a$
+is a column and $s$ a row, such that $|\supp\gamma(C)|=3$.
+The set $G=\supp\gamma(C)$ is its support; $Ka$ and $Ks$ are its
+column and row directions.
+\end{definition}
+
+\begin{lemma}\label{lem:atom}
+For every nonzero test $C$, we have $|\supp\gamma(C)|\geqs3\rk C$.
+For an atomic test $C=as$ with support $G$, there are rows $b_i$ and
+columns $c_i$ such that
+\[
+ U_i=ab_i,\qquad V_i=c_i s,
+ \qquad \gamma(C)_i\, b_jc_i=\delta_{ji}\quad(i,j\in G).
+\]
+In particular, every $U_i,V_i$ on $G$ has rank one.
+The supports of two atomic tests are either equal or disjoint.
+In the first case the tests are proportional. The column directions
+of any three tests with distinct supports are independent, as are
+their row directions.
+\end{lemma}
+\begin{proof}
+The bilinear form $(A,B)\mapsto\tr(CBA)$ has matrix rank $3\rk C$:
+after reducing $C$ to rank normal form, it is a sum of $3\rk C$
+independent coordinate products. Representation \eqref{eq:trace}
+contains only $|\supp\gamma(C)|$ rank-one forms, proving the bound.
+
+For $C=as$ and exactly three terms, equality holds in the rank bound.
+Factoring a full-rank bilinear form through $K^3$ shows that the
+first coefficient forms constitute a basis of the forms $A\mapsto bAa$,
+and the second a basis of the forms $B\mapsto sBc$.
+Hence $U_i=ab_i$ and $V_i=c_i s$. Equality with the matrix pairing
+gives the stated weighted duality.
+
+If two atoms share an index, its nonzero $U_i$ fixes their common
+column direction. Lemma~\ref{lem:point-capacity} permits only three
+indices in this class, so the supports coincide. The space of tests
+with this support is one-dimensional, so the tests are proportional.
+Finally, dependence of the column directions of three distinct atoms
+would put their nine $U_i$ in one plane, contrary to Lemma~\ref{lem:plane}.
+For row directions, use the symmetry involving transposition.
+\end{proof}
+
+\begin{lemma}\label{lem:stationary}
+Let $0\ne d_0\in D$, $G=\supp d_0$, and $a=\dim(Md_0)$.
+Then there is an $a$-dimensional space of columns $H$ such that
+\[
+ \Span U_G=\{T:\text{all columns of }T\text{ lie in }H\}.
+\]
+In particular, $\dim\Span U_G=3a$.
+If $w\in N\setminus\{0\}$ is a common eigenvector for multiplication
+by $M$, then $w=\gamma(C)$ for an atomic test $C$.
+\end{lemma}
+\begin{proof}
+Let $H$ be the span of the columns of all $C_{d_0}(u)$.
+Reciprocity \eqref{eq:reciprocity} gives
+\[
+ H=(\ker(u\mapsto C_{d_0}(u)))^\perp:
+\]
+a row $v$ annihilates all
+these columns precisely when $uC_{d_0}(v)=0$ for every $u$.
+Thus $\dim H=\dim Md_0=a$.
+
+All $C_{d_0}(u)$ are supported in $G$, so \eqref{eq:cycles} implies
+$H\subseteq\col(\Span U_G)$. The equality
+$\gamma(C_{d_0}(u))_i=(uU_i\eta)(d_0)_i$ shows that $U_i\eta\in H$
+for $i\in G$: both sides vanish on the kernel of the family $C_{d_0}$.
+Property 3 of Lemma~\ref{lem:generic} now puts every column of $U_i$
+in $\col(\Span U_G)$. This latter space is itself contained in $H$,
+since its elements can be obtained by evaluating matrices in
+$\Span U_G$ on $\eta\ne0$. Therefore every column of $U_i$ lies in $H$;
+the reverse inclusion of the full matrix space is already part of
+the definition of $\col$.
+
+For a common eigenvector $w$, we have $w\in D$ and $\dim Mw=1$.
+Thus all $U_i$ on its support have one column direction.
+By Lemma~\ref{lem:point-capacity} the support has at most three
+indices, and by Lemma~\ref{lem:atom} it has at least three.
+Its test has rank one and is atomic.
+\end{proof}
+
+\section{Excluding a positive dimension increment}
+
+\subsection{Local geometry of a growing component}
+
+\begin{lemma}\label{lem:growing-block}
+If $e=d+1$, then $E$ has a coordinate component $G$ with the following
+properties:
+\begin{enumerate}
+\item $\dim(M|_G)=2$, $\dim D[G]=1$,
+$E[G]=N[G]$, and $\dim E[G]=2$;
+\item $6\leqs |G|\leqs7$, and the span of $U_G$ is the full space of
+matrices whose columns lie in a certain plane;
+\item $\test_G$ is two-dimensional, its column and row supports are
+two-dimensional, and it contains a rank-two matrix;
+\item in $G$, at most two matrices $U_i$ have any fixed column
+direction, and at most two have any fixed row direction;
+\item $N[G]$ contains no common eigenvector for multiplication by $M$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Lemma~\ref{lem:component-cost} gives a component on which the restriction
+of $M$ has dimension two. There is a vector $d_0\in D[G]$ with support
+exactly $G$: the supports of $D[G]$ and $E[G]$ coincide, and over an
+infinite field we can avoid every coordinate hyperplane.
+By Lemma~\ref{lem:stationary}, the span of $U_G$ is the full space of
+matrices whose columns lie in a certain plane. Its dimension is six,
+so $|G|\geqs6$. Lemma~\ref{lem:plane} gives $|G|\leqs7$ and
+$\dim N[G]\leqs2$. Now
+\[
+ 2+\dim D[G]\leqs\dim E[G]+1,\qquad
+ 1\leqs\dim D[G],\qquad E[G]\subseteq N[G]
+\]
+force the dimensions to be $1,2,2$. If $N[G]$ contained a common
+eigenvector $w$, it would lie in $D[G]$ and span it; then
+$MD[G]=Kw$, contrary to $\dim E[G]=2$.
+
+The column support of $\test_G$ is two-dimensional by the proof of
+Lemma~\ref{lem:stationary}. Inequality \eqref{eq:internal} gives
+$2+2h_G\leqs7$, hence $h_G\leqs2$.
+We show that $h_G\ne1$. If every test has its rows in a line $L$,
+then $\test_G=\{as:a\in H\}$ with $\dim H=2$ and $Ks=L$.
+Consider the maps
+\[
+ f_i:\test_G\to\Mat_{3,3}(K),\qquad f_i(C)=\gamma(C)_iV_i.
+\]
+Their span contains all maps $C\mapsto AC$, which form a space of
+dimension $3\dim H=6$. Projecting the values modulo the space of
+matrices whose rows lie in $L$ kills these six dimensions.
+Thus the span of the maps $C\mapsto\gamma(C)_i[V_i]$ has dimension
+at most $|G|-6\leqs1$.
+For indices with $[V_i]\ne0$, all the nonzero forms
+$\gamma(\cdot)_i|_{\test_G}$ are consequently proportional: evaluate
+two proportional maps on any test where one of them is nonzero.
+There is a nonzero $C\in\test_G$ annihilating all these forms.
+Its support consists only of indices for which the rows of $V_i$
+lie in $L$. By Lemma~\ref{lem:point-capacity} there are at most three
+such indices, so $C$ is atomic.
+For an atom, $U_i=ab_i$; normalization gives $(u_0a)b_i\eta=1$ on
+its support. Hence $m(u)_i=(ua)/(u_0a)$ is constant there.
+Thus $\gamma(C)$ is a common eigenvector, which has already been excluded.
+
+Both supports are now two-dimensional. If every test had rank at
+most one, Lemma~\ref{lem:rank-one-space} would make one support
+one-dimensional. Thus a rank-two test exists.
+
+Three indices with a common column direction would support a nonzero
+test by Lemma~\ref{lem:point-capacity}. This would be an atom and a
+common eigenvector, a contradiction. For a row direction, apply the
+same lemma after transposing: three matrices with a common row
+direction must span the three-dimensional space of all matrices
+with that direction. But the additional requirement that their
+columns lie in a plane leaves only two dimensions, a contradiction.
+\end{proof}
+
+\subsection{Replacing one bilinear pair}
+
+\begin{definition}
+The \emph{first rank sum} of an algorithm is $\sigma_U=\sum_i\rk U_i$.
+Among all algorithms of length twenty over the chosen field, choose
+one minimizing $\sigma_U$. A minimum exists because the possible
+values form a nonempty set of natural numbers. Normalization by
+nonzero rescalings preserves it.
+The \emph{bilinear pair} $U\boxtimes V$ denotes the form
+$(A,B)\mapsto\tr(UA)\tr(VB)$, not the matrix product $UV$.
+\end{definition}
+
+\begin{lemma}\label{lem:exchange}
+In an algorithm with minimal $\sigma_U$, an equality
+\[
+ \sum_i a_i(U_i\boxtimes V_i)=X\boxtimes Y,\qquad a_j\ne0,
+\]
+implies $\rk U_j\leqs\rk X$.
+\end{lemma}
+\begin{proof}
+Solve for $U_j\boxtimes V_j$ and substitute into the algorithm.
+The $j$th term is replaced by the pair $(X,Y)$ with output
+$a_j^{-1}W_j$; for $i\ne j$, the output becomes
+$W_i-a_i a_j^{-1}W_j$. All other first coefficient matrices are
+unchanged, and the length remains twenty. If $\rk X<\rk U_j$,
+then $\sigma_U$ decreases.
+\end{proof}
+
+\begin{prop}\label{prop:no-growth}
+For an algorithm with minimal first rank sum, the normalization in
+Lemma~\ref{lem:generic} satisfies $MD=D$.
+\end{prop}
+\begin{proof}
+By Proposition~\ref{prop:critical}, it suffices to exclude $e=d+1$.
+Take the component $G$ from Lemma~\ref{lem:growing-block}.
+Compress its two outer supports to $K^2$. The first coefficients have
+form $U_i=JX_i$, where $J$ is a $3\times2$ matrix of rank two and
+$X_i$ are $2\times3$ matrices. Choose a basis $C,D$ of the test space
+such that, on these two supports, $C$ is the identity matrix and
+$D$ is a nonscalar $2\times2$ matrix $H$. We may also require
+\[
+ c_i=\gamma(C)_i\ne0\quad(i\in G):
+\]
+each coordinate on $\test_G$ is nonzero, while invertibility and
+these finitely many conditions are expressed by nonzero polynomials
+in the two test coordinates. Set $t_i=\gamma(D)_i/c_i$.
+
+Subtracting the two versions of \eqref{eq:cycles} for $C,D$ gives
+a matrix relation with coefficients multiplying the $V_i$:
+\begin{equation}\label{eq:cross-relation}
+ \sum_{i\in G} c_i(t_iI-H)X_i\boxtimes V_i=0.
+\end{equation}
+This equality is interpreted coordinatewise in the matrix of the
+first factor. It also follows directly from
+$\eta'(uC)=\sum_i\gamma(C)_i(uU_i\eta')V_i$ for arbitrary $u,\eta'$.
+
+By \eqref{eq:mass}, $\dim\Span V_G\geqs6$.
+If $V_G$ were independent, every first coefficient in
+\eqref{eq:cross-relation} would vanish. Then the columns of each
+$X_i$ would lie in an eigenline of $H$ with eigenvalue $t_i$.
+A nonscalar $2\times2$ matrix over an algebraically closed field has
+at most two eigendirections. By Lemma~\ref{lem:growing-block}, each
+contains at most two indices, so $|G|\leqs4$, a contradiction.
+Consequently,
+\[
+ |G|=7,\qquad \dim\Span V_G=6.
+\]
+All relations among the $V_i$ are spanned by one nonzero vector $w$,
+with $\sum_iw_iV_i=0$. Each coordinate of the matrix relation
+\eqref{eq:cross-relation} is a multiple of $w$. Thus there is a
+$2\times3$ matrix $T$ satisfying
+\begin{equation}\label{eq:resolvent}
+ (t_iI-H)X_i=(w_i/c_i)T\qquad(i\in G).
+\end{equation}
+
+We claim that $\rk T=2$. Let $\lambda,\mu$ be the roots of the
+characteristic polynomial of $H$, possibly equal. Both shifts
+$H-\lambda I$ and $H-\mu I$ are nonzero of rank one, and
+\begin{equation}\label{eq:CH}
+ (H-\lambda I)(H-\mu I)=0.
+\end{equation}
+If $T=0$, the preceding count again gives $|G|\leqs4$.
+Suppose $T=ab$ has rank one. If $a$ is not an eigenvector column of
+$H$, then at $t_i=\lambda,\mu$, multiplying \eqref{eq:resolvent} by
+the opposite shift gives $w_i=0$ and puts the columns of $X_i$ in
+the corresponding eigenline. Away from these two parameters the
+shift is invertible, and all $X_i$ have the common row direction $Kb$.
+Each of these three classes has at most two indices, giving at most
+six in total, a contradiction.
+
+If $Ha=\lambda a$, multiplying \eqref{eq:resolvent} by $H-\lambda I$
+and using \eqref{eq:CH} shows that, for $t_i\ne\mu$, all columns of
+$X_i$ lie in $Ka$. But these indices are exactly the support of the
+nonzero test $D-\mu C$. There are at most two of them by
+Lemma~\ref{lem:growing-block}, whereas every nonzero test requires at
+least three indices. The case $Ha=\mu a$ is analogous.
+Therefore $\rk T=2$.
+
+At the roots $t_i=\lambda,\mu$, the left-hand side of
+\eqref{eq:resolvent} has rank at most one, so $w_i=0$.
+Set $J_0=\{i\in G:t_i\ne\lambda,\ t_i\ne\mu\}$.
+For $i\in J_0$, equations \eqref{eq:CH} and \eqref{eq:resolvent} give
+\[
+ c_i(t_i-\lambda)X_i
+ =w_iT+\frac{w_i}{t_i-\mu}(H-\lambda I)T.
+\]
+Pair this with the second bilinear factor $V_i$ and sum.
+The first term vanishes because $\sum_iw_iV_i=0$ and $w_i=0$
+outside $J_0$:
+\[
+ \sum_{i\in J_0}c_i(t_i-\lambda)(X_i\boxtimes V_i)
+ =((H-\lambda I)T)\boxtimes
+     \left(\sum_{i\in J_0}\frac{w_i}{t_i-\mu}V_i\right).
+\]
+Multiplying the first matrices on the left by $J$ transfers the
+identity to the original $U_i$. Choose $j$ with $w_j\ne0$.
+Then $j\in J_0$, the coefficient of its pair is nonzero, and
+$\rk U_j\geqs\rk X_j\geqs\rk T=2$ by \eqref{eq:resolvent}.
+But the first factor on the right, $J(H-\lambda I)T$, has rank at
+most one. This contradicts Lemma~\ref{lem:exchange}.
+\end{proof}
+
+\section{Four atoms: a residual sum of eight terms}
+
+\subsection{A five-dimensional annihilator}
+
+\begin{lemma}\label{lem:annihilator}
+Let $C_j=a_js_j$, $1\leqs j\leqs4$, be rank-one $3\times3$ matrices,
+with every three $a_j$ independent and every three $s_j$ independent.
+Then the space
+\[
+ L=\{T\in\Mat_3(K):\tr(TC_j)=0\ (1\leqs j\leqs4)\}
+\]
+has dimension five and admits a basis of rank-one matrices.
+\end{lemma}
+\begin{proof}
+Independent changes of basis in the two outer spaces and nonzero
+rescalings allow the column representatives to be chosen as
+\[
+ e_1,\quad e_2,\quad e_3,\quad e_1+e_2+e_3.
+\]
+Independently, the row representatives can be reduced to rows with
+the same coordinates. The annihilator is therefore defined by
+\[
+ T_{11}=T_{22}=T_{33}=0,\qquad \sum_{i\ne j}T_{ij}=0.
+\]
+These are four independent equations. Consider the six rank-one matrices
+\[
+ E_{12}-E_{13},\ E_{21}-E_{23},\ E_{31}-E_{32},\quad
+ E_{21}-E_{31},\ E_{12}-E_{32},\ E_{13}-E_{23}.
+\]
+They span this hyperplane in the six-dimensional space of off-diagonal
+coordinates: they are differences of adjacent coordinates along a
+connected six-cycle. Any five that leave a connected path form a basis.
+Reversing the changes of basis preserves the ranks.
+\end{proof}
+
+\begin{prop}\label{prop:residual-model}
+If an algorithm of length twenty has four atomic tests with distinct
+supports, then there exist a five-dimensional space $L$, a basis
+$b_1,\ldots,b_5$ of $L$, eight vectors $w_i\in L$, and matrices
+$A_{ji}\in\Mat_3(K)$ of rank at most one, satisfying
+\begin{equation}\label{eq:reconstruction}
+ \sum_{i=1}^{8}\tr(XA_{ji})w_i=\tr(X)b_j
+            \qquad\text{for all }X\in\Mat_3(K),\quad 1\leqs j\leqs5.
+\end{equation}
+We call the system \eqref{eq:reconstruction} a \emph{reconstruction of
+the outputs} $b_1,\ldots,b_5$.
+\end{prop}
+\begin{proof}
+By Lemma~\ref{lem:atom}, the four supports are disjoint and contain
+twelve indices. Let $J$ be the eight remaining indices, and let $L$
+be the annihilator of the four tests. These tests satisfy the
+assumptions of Lemma~\ref{lem:annihilator}; choose its rank-one basis
+$b_j$. For $i\in J$, we have $W_i\in L$; set $w_i=W_i$ and
+$A_{ji}=V_i b_j U_i$. These matrices have rank at most one.
+In \eqref{eq:dual-sandwich} with $T=b_j$, the atomic summands vanish:
+if $U_i=ab_i$ and $V_i=c_i s$, then
+$V_i b_j U_i=c_i(s b_j a)b_i=0$, since $s b_j a=\tr(b_j as)=0$.
+What remains is \eqref{eq:reconstruction}.
+\end{proof}
+
+\subsection{Coordinates of a three-dimensional kernel}
+
+\begin{lemma}\label{lem:kernel-model}
+If \eqref{eq:reconstruction} holds, then there exist eight pairwise
+nonproportional nonzero columns $\mu_i\in K^3$ spanning $K^3$ and,
+for each $j$, a linear map $Z_j:K^3\to\Mat_3(K)$ such that
+\[
+ A_{ji}=a_{ji}I+Z_j(\mu_i),\qquad (Z_j(x))_{11}=0.
+\]
+Moreover, $I\in\Span_i A_{ji}$, and
+\[
+ 3\leqs\dim\Span_i A_{ji}=1+\rk Z_j\leqs4.
+\]
+\end{lemma}
+\begin{proof}
+Set $F:K^8\to L$, $F(c)=\sum_i c_iw_i$.
+Substituting $X=E_{11}$ in \eqref{eq:reconstruction} shows that each
+$b_j$ lies in the image of $F$. Thus $F$ is surjective and
+$\dim\ker F=3$. Let $\mu_i$ be the coordinates of the restriction
+of the $i$th coordinate form to $\ker F$, in a chosen basis of
+$(\ker F)^*$. They span this entire dual space.
+
+If $\mu_i,\mu_k$ are dependent, a nonzero form
+$a\varepsilon_i+b\varepsilon_k$ annihilates $\ker F$ and thus has
+form $\ell\circ F$ for some $\ell\in L^*$.
+Applying $\ell$ to \eqref{eq:reconstruction} gives
+\[
+ aA_{ji}+bA_{jk}=\ell(b_j)I.
+\]
+The left-hand side has rank at most two, so $\ell(b_j)=0$ for every
+$j$. Hence $\ell=0$ and $a=b=0$, a contradiction.
+This also excludes zero $\mu_i$.
+
+Set $a_{ji}=(A_{ji})_{11}$. For each matrix entry, the vector of
+corresponding entries of $A_{ji}-a_{ji}I$ lies in $\ker F$, by
+\eqref{eq:reconstruction}. Thus these matrices arise from the
+coordinates $\mu_i$ through a linear map $Z_j$; their $(1,1)$ entry
+is zero.
+
+Choose $\ell$ with $\ell(b_j)=1$ and apply it to the reconstruction
+again: $I=\sum_i\ell(w_i)A_{ji}$. Hence
+$\Span_i A_{ji}=KI\oplus\im Z_j$.
+This space has dimension at least three: in a basis of matrices of
+rank at most one, expressing the rank-three identity requires at
+least three matrices. The upper bound of four follows from
+$\dim K^3=3$.
+\end{proof}
+
+\subsection{Quadratic separation and concurrent lines}
+
+\begin{definition}
+A nonzero column $\mu\in K^3$ represents a projective point $[\mu]$;
+proportional columns represent the same point. A projective line is
+the set of one-dimensional subspaces of a plane in $K^3$.
+Three distinct lines are \emph{concurrent} if they pass through a
+single point, called their center. For a covering of a family of
+points by such lines, the \emph{active group} of a line consists of
+the indices of points on it other than the center.
+
+An index $i$ is \emph{quadratically separable} in the family
+$[\mu_1],\ldots,[\mu_8]$ if there is a homogeneous quadratic
+polynomial $q$ in three variables with $q(\mu_i)\ne0$ and
+$q(\mu_k)=0$ for $k\ne i$.
+\end{definition}
+
+\begin{lemma}\label{lem:separator}
+Let the rank-one matrices $A_i$ be pairwise nonproportional, with
+$I\in\Span A_i$, and $\dim\Span A_i\leqs4$.
+Then there are an index $i$ and a linear form $\chi$ on matrices such that
+\[
+ \chi(I)=1,\quad\chi(A_i)\ne0,\quad\chi(A_k)=0\ (k\ne i).
+\]
+There is also a homogeneous quadratic form $q$ on matrices, invariant
+under addition of a scalar multiple of the identity, that separates
+the same index.
+\end{lemma}
+\begin{proof}
+Partition the family $A_i$ into connected components; their spans
+form a direct sum. Decompose $I=\sum_H T_H$ along this sum and set
+$d_H=\dim\Span A_H$, $r_H=\rk T_H$.
+Lemma~\ref{lem:connected} gives $2r_H\leqs d_H+1$: the columns of
+$T_H$ lie in the span of the first factors of $A_i$, $i\in H$, and
+its rows in the span of the second factors, so both spans have
+dimension at least $r_H$.
+If $d_H\geqs2$, integrality gives $3r_H\leqs2d_H$.
+If $T_H=0$ whenever $d_H=1$, we would obtain
+\[
+ 3=\rk I\leqs\sum_H r_H\leqs\frac23\sum_H d_H\leqs\frac83,
+\]
+a contradiction. Hence a one-dimensional component has $T_H\ne0$.
+Pairwise nonproportionality implies that it contains a single $A_i$.
+Projection onto this component, extended to a linear form on all
+matrices and normalized by its value on $I$, gives $\chi$.
+
+The matrix $A_i-\chi(A_i)I$ has rank at least two: otherwise
+$\rk A_i=1$ would imply $\rk I\leqs2$.
+Choose a nonzero two-by-two minor of this matrix. Taking that minor
+of $T-\chi(T)I$ defines a quadratic form $q(T)$.
+For $k\ne i$, it is the corresponding minor of $A_k$, hence zero.
+Also $q(T+cI)=q(T)$ because $\chi(I)=1$.
+\end{proof}
+
+\begin{lemma}\label{lem:slice-dichotomy}
+In the model of Lemma~\ref{lem:kernel-model}, each $j$ satisfies at
+least one of the following alternatives:
+\begin{enumerate}
+\item there is a quadratically separable index $i$ with $b_j\in Kw_i$;
+\item the eight points $[\mu_i]$ are covered by three concurrent
+lines, each containing at least two points other than the center;
+moreover, $b_j$ lies in the span of the $w_i$ in each of the three
+active groups.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Fix $j$ and suppress it in the notation.
+If $\dim\Span A_i=4$, the map $Z$ is injective.
+Thus the $A_i$ are nonzero and pairwise nonproportional: removing
+the scalar part determined by the $(1,1)$ entry from such a relation
+would give the same relation among the $\mu_i$.
+Apply Lemma~\ref{lem:separator}. The reconstruction and $\chi(I)=1$ give
+\[
+ b=\sum_k\chi(A_k)w_k=\chi(A_i)w_i.
+\]
+The quadratic form $x\mapsto q(Z(x))$ separates $\mu_i$, since
+\[
+ q(Z(\mu_k))=q(A_k-a_kI)=q(A_k).
+\]
+
+Now suppose $\dim\Span A_i=3$. Choose a basis of this space consisting
+of rank-one matrices. A linear combination of them equals $I$, so
+both sets of factors are bases and, after absorbing the nonzero
+coefficients, are dual. Hence a conjugation simultaneously
+diagonalizes every $A_i$; each nonzero $A_i$ has exactly one nonzero
+diagonal coordinate.
+
+After this conjugation, consider
+\[
+ \pi(x)=\bigl((Z(x))_{22}-(Z(x))_{11},\
+                 (Z(x))_{33}-(Z(x))_{11}\bigr).
+\]
+Its kernel is $\ker Z$: equality of the three diagonal entries means
+that the matrix is scalar, while the original condition
+$(Z(x))_{11}=0$ excludes a nonzero scalar matrix.
+Thus $\rk\pi=2$ and $\dim\ker\pi=1$.
+Modulo $KI$, the three coordinate matrix lines give three distinct
+lines in $K^2$. Their inverse images under $\pi$ are three planes
+through $\ker\pi$, or three concurrent projective lines.
+They cover all $[\mu_i]$.
+
+Denote the $a$th diagonal coordinate of the conjugated $A_i$ by $c_{ai}$.
+Applying the diagonal coordinate form to the reconstruction gives
+$b=\sum_i c_{ai}w_i$ for every $a=1,2,3$.
+Nonzero $c_{ai}$ occur on the corresponding line away from the center.
+Each active group is nonempty. If all three groups have at least two
+indices, we obtain the second alternative. Otherwise one group
+consists of a single index $i$, and $b\in Kw_i$.
+The product of linear equations for the other two lines is a
+quadratic polynomial nonzero at $\mu_i$ and zero at every other point.
+This gives the first alternative.
+\end{proof}
+
+\begin{lemma}\label{lem:projective-count}
+For eight distinct projective points, the following hold.
+\begin{enumerate}
+\item At most three indices are quadratically separable.
+\item If the points are covered by three concurrent lines, each
+containing at least two points other than the center, then no index
+is quadratically separable.
+\item There are at most four distinct centers of such coverings.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\emph{1.} The evaluation vectors of quadratic forms constitute a
+subspace of $K^8$ of dimension at most six. If there are $s$ separable
+indices, their coordinate vectors lie in this space. On the remaining
+points, evaluation of quadratic forms has rank at least
+$\min(3,8-s)$: any three distinct projective points can be separated
+by products of linear forms. Thus $s+\min(3,8-s)\leqs6$, which implies
+$s\leqs3$.
+
+\emph{2.} Suppose a quadratic form vanishes at all but possibly one
+point. Its restriction to a projective line, if nonzero, has at most
+two zeros. Thus three zeros on a line force its linear equation to
+be a factor of the form.
+If the center is not among the eight points, deleting one point
+leaves seven points on the three lines, in nonempty groups, at least
+two of which have size at least two. We can choose three, two, and
+one points on the respective lines. The first triple forces one
+linear factor, and the second pair forces the other. The last point,
+outside these two lines, gives a contradiction.
+If the center is among the eight points and is the point deleted,
+seven noncentral points remain, at least two on each line, and the
+same argument applies. If a noncentral point is deleted, the center
+remains a zero. Two lines still contain at least two noncentral points
+each; together with the center these give two triples. The form must
+be the product of equations of these two lines, but a remaining
+noncentral point on the third line is not a zero of that product.
+
+\emph{3.} If some line contains at least four points, it must occur
+in every covering by three lines: otherwise the covering lines
+would meet it in at most three points. All centers lie on that line.
+For two distinct centers, at most four points can lie off it, at the
+four intersections of the remaining pairs of lines; the active-group
+condition requires at least four.
+Fix a point off the line. In each covering, its covering line contains
+another point off the line, with only three possible partners.
+A partner determines the covering line and its intersection with the
+original line, hence the center. There are therefore at most three centers.
+
+It remains to consider the case where each line contains at most
+three points. Every covering has at least two lines containing three
+points. Two distinct centers cannot use the same such line: otherwise
+the five points off it would lie in the four intersections of the
+remaining pairs of lines. Five centers would therefore give ten
+distinct three-point lines. Each contains three unordered pairs of
+points, and no pair is repeated. But $10\cdot3>\binom82=28$.
+\end{proof}
+
+\begin{lemma}\label{lem:same-center}
+In the model \eqref{eq:reconstruction}, two independent outputs $b,b'$
+cannot have coverings of the second type in
+Lemma~\ref{lem:slice-dichotomy} with the same center.
+\end{lemma}
+\begin{proof}
+For a fixed center, each noncentral point determines its line
+uniquely. Hence the active groups of the two coverings agree up to
+permutation. Let $E_1,E_2,E_3\subseteq K^8$ be the coordinate spaces
+of these three disjoint groups. If
+$H=F(E_1)\cap F(E_2)\cap F(E_3)$, then $2\dim H\leqs\dim\ker F=3$.
+Indeed, choose linear maps $s_a:H\to E_a$ with $F(s_a(h))=h$.
+The map $(h,k)\mapsto s_1(h)-s_2(h)+s_1(k)-s_3(k)$ is injective
+and takes values in $\ker F$. Injectivity follows by looking at the
+second and third disjoint coordinate groups.
+Thus $\dim H\leqs1$, and $H$ cannot contain two independent outputs.
+\end{proof}
+
+\begin{theorem}\label{thm:no-eight}
+Over any field, a reconstruction \eqref{eq:reconstruction} of five
+independent outputs by eight terms of rank at most one is impossible.
+\end{theorem}
+\begin{proof}
+Construct the common family of eight points using
+Lemma~\ref{lem:kernel-model}. If all five outputs have the first type
+in Lemma~\ref{lem:slice-dichotomy}, then by part 1 of
+Lemma~\ref{lem:projective-count} they lie in the span of at most three
+vectors $w_i$, contradicting independence.
+Thus there is at least one covering of the second type.
+By part 2, there are now no quadratically separable indices, so all
+five outputs have the second type. Their centers are distinct by
+Lemma~\ref{lem:same-center}, contradicting part 3 of
+Lemma~\ref{lem:projective-count}.
+\end{proof}
+
+\begin{cor}\label{cor:no-four}
+An algorithm of length twenty cannot have four atomic tests with
+distinct supports.
+\end{cor}
+\begin{proof}
+Proposition~\ref{prop:residual-model} reduces such an algorithm to a
+reconstruction ruled out by Theorem~\ref{thm:no-eight}.
+\end{proof}
+
+\section{Three atoms and completion of the proof}
+
+\begin{prop}\label{prop:three}
+For a normalized algorithm of length twenty, the equalities $MD=D$
+and $\dim D=3$ are impossible.
+\end{prop}
+\begin{proof}
+By Lemma~\ref{lem:component-cost}, $D$ is spanned by common eigenvectors
+for multiplication by $M$. Choose three independent such vectors.
+Lemma~\ref{lem:stationary} turns them into atomic tests $C_j=a_js_j$
+with distinct supports. By Lemma~\ref{lem:atom}, the columns $a_j$
+form a basis, as do the rows $s_j$. Let $(u_j)$ be the row basis dual
+to $(a_j)$.
+
+Since $\gamma(C_j)$ is a common eigenvector, $C_{\gamma(C_j)}(u)$ is
+a nonzero constant multiple of $(ua_j)C_j$.
+Identity \eqref{eq:compatibility} gives
+\[
+ (ua_j)s_j B_z(v)=(va_j)s_j B_z(u).
+\]
+Taking $u=u_k$, we get $s_jB_z(u_k)=0$ for $j\ne k$.
+Consequently,
+\[
+ B_z(u_k)=s_k^*f_k(z)
+\]
+for certain linear maps $f_k:Z\to F$.
+Each $f_k$ is injective: a zero would imply $B_z(u_k)=0$, while
+$u_k\ne0$. Lemma~\ref{lem:injective-product} gives $r\geqs9z+3$.
+But \eqref{eq:dz} with $d=3$ and $r=20$ gives $z\geqs2$, hence
+$r\geqs21$, a contradiction.
+\end{proof}
+
+\begin{proof}[Proof of the main theorem]
+Suppose an algorithm of length $r\leqs20$ exists over the original
+field. Extend the field to an algebraic closure and delete zero
+summands. Proposition~\ref{prop:critical} shows that the remaining
+length is twenty.
+
+Among algorithms of this length, choose one with minimal first rank
+sum, and then normalize it using Lemma~\ref{lem:generic}.
+Proposition~\ref{prop:no-growth} gives $MD=D$, and
+Proposition~\ref{prop:critical} gives $d\geqs3$.
+If $d\geqs4$, choose four independent common eigenvectors in $D$.
+By Lemmas~\ref{lem:component-cost} and~\ref{lem:stationary}, they give
+four atomic tests. Their supports are distinct, since atoms with the
+same support are proportional. This contradicts Corollary~\ref{cor:no-four}.
+Hence $d=3$, but Proposition~\ref{prop:three} excludes this case.
+
+Thus no algorithm of length at most twenty exists over the original
+field either. Therefore $R_K\langle3,3,3\rangle\geqs21$.
+\end{proof}
+\end{document}

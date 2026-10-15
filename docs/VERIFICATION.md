@@ -21,7 +21,8 @@ unchanged when reproducing the supplied proof.
 1. `lake build` builds the library rooted at `MMRank.lean`, including the
    public theorem and all its imports.
 2. `lake env lean scripts/Audit.lean` prints the public theorem and the
-   exact-algorithm theorem, prints their axiom dependencies, and audits
+   exact-algorithm theorem for 3 × 3 multiplication, the two ⟨2,2,n⟩ length
+   bounds, prints their axiom dependencies, and audits
    every declaration in the imported MMRank modules, including generated
    helpers.
 
@@ -31,10 +32,10 @@ particular, it rejects `sorryAx`, additional assumed mathematical axioms,
 and the extra evaluation axioms associated with `native_decide`.
 An audit of an empty project also fails.
 
-On success the final line reports:
+On success the final line reports the number of audited declarations:
 
 ```text
-PASS: 1925 project declarations use only propext, Classical.choice, Quot.sound.
+PASS: <count> project declarations use only propext, Classical.choice, Quot.sound.
 ```
 
 A nonzero exit status from either command makes `scripts/check.sh` fail.
@@ -49,6 +50,16 @@ for arbitrary linear input forms and output matrices over any field.
 coefficients and right action on row vectors. Inspection of that signature
 is essential: successful checking certifies the formal statement actually
 written in the source.
+
+[TwoByTwoLengthBound.lean](../MMRank/TwoByTwoLengthBound.lean) states the
+additional bound 7n ≤ 2ℓ for every exact algorithm of format ⟨2,2,n⟩,
+over every field and including n=0. Its `length_22n_ge_ceil` specialization
+uses natural-number division to express ℓ ≥ ⌈7n/2⌉.
+
+The [AI-generated proof notes](proof-notes/README.md) are expository reading
+aids. They have not undergone independent mathematical or peer review.
+The build checks the Lean code, not the correctness of the prose or its
+correspondence to the code. No novelty or priority claim is made.
 
 The proof requires no external search certificates or numerical datasets.
 Checking relies on the pinned Lean implementation and its imported

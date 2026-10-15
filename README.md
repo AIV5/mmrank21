@@ -11,6 +11,16 @@ $$R_K\langle 3,3,3\rangle \geqslant 21 \qquad\text{for every field }K.$$
 The proof is supplied in Lean. This README states the result, explains how to
 check it, and provides a short route through the formal development.
 
+Human-readable proof notes are available in
+[English (PDF)](output/pdf/rank21-english-proof.pdf) and
+[Russian (PDF)](output/pdf/rank21-russian-proof.pdf), with
+[LaTeX sources and a statement-to-module map](docs/proof-notes/README.md).
+These are **AI-generated expository notes, not research articles**. They
+have not undergone independent mathematical or peer review. No claim of
+novelty or priority is made for the results or proofs. The Lean source is
+the authoritative formal statement and proof; checking it does not certify
+the correctness of the prose account.
+
 ## The theorem
 
 Let $K$ be a field and $I$ a finite set. Suppose that $a_i,b_i$ are
@@ -62,7 +72,7 @@ lake exe cache get
 ```
 
 The first command downloads compiled dependencies. The second builds the
-proof, prints both theorem signatures and their axioms, and rejects any
+proof, prints the main theorem signatures and their axioms, and rejects any
 project declaration whose proof uses an axiom outside `propext`, `Classical.choice` and `Quot.sound`. In particular, it rejects
 `sorryAx` and additional assumed project axioms.
 
@@ -90,6 +100,19 @@ second-conductor budget excludes the remaining three-atom case.
 [The proof overview](docs/PROOF_OVERVIEW.md) links these steps to their Lean
 modules. The Lean source comments are mostly in Russian; this README,
 the public theorem interface and the accompanying guides are in English.
+
+The [English and Russian notes](docs/proof-notes/README.md) give a fuller
+account of the argument with definitions, lemmas and proofs. They also
+include the following consequence of the conductor bounds, now formalized
+in [TwoByTwoLengthBound.lean](MMRank/TwoByTwoLengthBound.lean):
+
+$$R_K\langle2,2,n\rangle\geqslant\left\lceil\frac{7n}{2}\right\rceil.$$
+
+The theorem `MMRank.ExactAlgorithm.length_bound_two_by_two` gives
+`7 * Fintype.card S ≤ 2 * Fintype.card I` when both `P` and `Q` have
+cardinality 2. The specialization `length_22n_ge_ceil` writes the ceiling
+as `(7 * n + 1) / 2` in the natural numbers. Both hold over every field;
+the formalization also includes `n = 0`.
 
 The source entry points are:
 
@@ -131,6 +154,14 @@ of 21; it does not determine the exact rank over every field. The papers
 above provide context and are not assumptions or computational inputs to
 the Lean proof.
 
+For the additional result of format ⟨2,2,n⟩, see Yaroslav Shitov's
+[*Determining the tensor rank of (2,2,m) matrix multiplication with
+GPT-5.6 Sol* (2026)](https://doi.org/10.13140/RG.2.2.29432.61441), which
+states the exact rank ⌈7m/2⌉ over every field. The present development
+formalizes the lower bound as a consequence of its conductor lemmas;
+it does not formalize the matching upper bound. No novelty or priority
+claim is made for either the results or the proofs in this repository.
+
 ## Authorship, AI assistance and citation
 
 Andrey Ivanov is the author and responsible maintainer. The research and
@@ -140,6 +171,9 @@ proof refactoring and documentation.
 
 Citation metadata is in [`CITATION.cff`](CITATION.cff).
 DOI: [10.5281/zenodo.23324839](https://doi.org/10.5281/zenodo.23324839).
+This DOI archives [version 0.1.1](https://github.com/AIV5/mmrank21/releases/tag/v0.1.1).
+The proof notes and the ⟨2,2,n⟩ formalization were added afterwards;
+when referring to these additions, also give the Git commit used.
 
 **License:** [Apache License 2.0](LICENSE). Copyright 2026 Andrey Ivanov.
 See [NOTICE](NOTICE). Dependencies retain their own licenses.

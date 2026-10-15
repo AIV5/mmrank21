@@ -74,6 +74,16 @@ theorem finrank_coordinateOrthogonal (N : Submodule K (ι → K)) :
   change finrank K (coordinateOrthogonal N) = finrank K (ι → K) - finrank K N at h
   rwa [Module.finrank_pi] at h
 
+/-- Ортогональность MB ⊆ N^⊥ ограничивает размерность MN. -/
+theorem finrank_product_add_le_of_orthogonal (M B N : Submodule K (ι → K))
+    (h : M * B ≤ coordinateOrthogonal N) :
+    finrank K (M * N) + finrank K B ≤ Fintype.card ι := by
+  have hb := Submodule.finrank_mono ((le_coordinateOrthogonal_mul_iff M B N).mpr h)
+  rw [finrank_coordinateOrthogonal] at hb
+  have hm := (M * N).finrank_le
+  rw [Module.finrank_pi] at hm
+  omega
+
 end Field
 
 end MMRank
